@@ -5,7 +5,7 @@ A page from someone's Letterboxd diary goes up on the TV with no name on it: a f
 - **Where:** a new round type inside Film Kapışması (`#/kapisma`). Phones join and answer exactly as they do today.
 - **Players:** all five. Su has no diary, so Su only guesses and is never the answer.
 - **Length:** 10–12 rounds, about 8 minutes
-- **Status:** proposal
+- **Status:** built as its own phone game at `#/gunluk` (phones join at `#/defter`); see "As built" below. Mixing diary rounds into Film Kapışması is still open.
 
 ## Why this one
 
@@ -13,7 +13,19 @@ A Letterboxd diary is a fingerprint. Nobody else logs eleven experimental shorts
 
 It also fixes the main limit of Film Kapışması: every question there is written by hand. Diary rounds come straight out of the exports, so we can have as many as we want and draw a fresh set each time.
 
-## How a round plays
+## As built: the notebook game (`#/gunluk`, phones at `#/defter`)
+
+A separate game in its own Firestore room, using the same rooms, rules and answer docs as Film Kapışması (`game: 'gunluk'` on the room). No rules change.
+
+- The TV shows a squared Turkish school notebook (kareli defter) with a blank name sticker ("Adı: ?"). The lobby has the QR code taped on the page.
+- Phones join by tapping their own name (İrem, Nil, Arjen, Dalım, Su); a name someone already has is greyed out. A PIN typed on the wrong join page is sent on to the right one.
+- After 4 s of an empty page, a line opens every 5 s; 8 s after the last line the page closes (or sooner, once everyone has picked). Phones show the four names only and say what a guess is worth right now.
+- Guesses are hidden: the TV's side column shows only a scribble next to whoever has picked. A guess is scored on the server clock: 5 points with one line showing, down to 1 with all five.
+- The owner picks too, so nobody can tell from the scribbles. The owner's pick never scores; the owner gets 1 point for every friend who picked someone else (option 2 below).
+- The reveal fills the sticker in the owner's lamp colour, then the teacher's red pen ticks and crosses the picks and writes the fact under the page. After 12 pages comes the "Karne" with a Takdir stamp.
+- Code: `src/diary/` (`room.ts` timing and seats, `scoring.ts`, `useDiaryHost.ts`), views `DiaryGame.vue` (TV) and `DiaryPhone.vue`, data `src/data/diary.ts` (12 pages, 3 per owner, from `scripts/diary-pages.py`).
+
+## How a round plays (Film Kapışması version, not built)
 
 1. **Reading (4 s, as now).** The screen shows the round title, "Kimin günlüğü?", and an empty diary page: a ruled card with five blank lines and a date range at the top, for example "26–28 Şubat 2026". The phones show the four names in their usual colours, still dark.
 2. **Answering (25 s).** The names light up on the phones. On the TV the diary lines fill in from the top, one every 4 seconds:

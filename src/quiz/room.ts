@@ -1,4 +1,5 @@
 import type { Timestamp } from 'firebase/firestore'
+import { siteOrigin } from '../siteUrl'
 
 // Shape of a live room in Firestore: rooms/{pin}, with players/{uid} and
 // answers/{round}_{uid} underneath. The host screen writes the room; phones read it.
@@ -7,6 +8,8 @@ export type Phase = 'lobby' | 'reading' | 'answering' | 'reveal' | 'intermission
 
 export interface RoomDoc {
   hostUid: string
+  /** Which game the room plays; rooms without one are Film Kapışması. Phones use it to open the right page. */
+  game?: 'kapisma' | 'gunluk'
   createdAt: Timestamp
   phase: Phase
   /** Question number, 0-based */
@@ -52,4 +55,4 @@ export interface AnswerDoc {
 
 export const answerId = (round: number, uid: string) => `${round}_${uid}`
 
-export const joinUrl = (pin: string) => `${location.origin}/#/katil/${pin}`
+export const joinUrl = (pin: string) => `${siteOrigin()}/#/katil/${pin}`

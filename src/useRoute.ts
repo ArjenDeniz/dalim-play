@@ -34,6 +34,12 @@ export const PAGES: Page[] = [
     width: 1180,
   },
   {
+    hash: '#/gunluk',
+    label: 'Kimin günlüğü?',
+    view: defineAsyncComponent(() => import('./views/DiaryGame.vue')),
+    width: 1280,
+  },
+  {
     hash: '#/emoji',
     label: 'Emoji’den Filmi Bil',
     view: defineAsyncComponent(() => import('./views/EmojiGame.vue')),
@@ -42,6 +48,12 @@ export const PAGES: Page[] = [
   {
     hash: '#/katil',
     view: defineAsyncComponent(() => import('./views/JoinGame.vue')),
+    width: 560,
+    bare: true,
+  },
+  {
+    hash: '#/defter',
+    view: defineAsyncComponent(() => import('./views/DiaryPhone.vue')),
     width: 560,
     bare: true,
   },

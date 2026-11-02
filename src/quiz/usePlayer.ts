@@ -13,34 +13,38 @@ import { computed, onScopeDispose, reactive, ref } from 'vue'
 import { db, signedIn } from '../firebase'
 import { answerId, type RoomDoc } from './room'
 
-const STORAGE_KEY = 'film-kapisma:player:v1'
+type Game = NonNullable<RoomDoc['game']>
+
+/** Each game has its own phone page; a PIN typed on the wrong one is sent to the right one */
+const PHONE_PAGE: Record<Game, string> = { kapisma: '#/katil', gunluk: '#/defter' }
+const STORAGE_KEY: Record<Game, string> = { kapisma: 'film-kapisma:player:v1', gunluk: 'kimin-gunlugu:player:v1' }
 
 interface Saved {
   pin: string
   name: string
 }
 
-function load(): Saved | null {
+function load(game: Game): Saved | null {
   try {
-    const s = JSON.parse(localStorage.getItem(STORAGE_KEY) ?? 'null') as Saved | null
+    const s = JSON.parse(localStorage.getItem(STORAGE_KEY[game]) ?? 'null') as Saved | null
     return s && typeof s.pin === 'string' && typeof s.name === 'string' ? s : null
   } catch {
     return null
   }
 }
 
-function save(s: Saved | null) {
+function save(game: Game, s: Saved | null) {
   try {
-    if (s) localStorage.setItem(STORAGE_KEY, JSON.stringify(s))
-    else localStorage.removeItem(STORAGE_KEY)
+    if (s) localStorage.setItem(STORAGE_KEY[game], JSON.stringify(s))
+    else localStorage.removeItem(STORAGE_KEY[game])
   } catch {
     /* ignore */
   }
 }
 
 /** A phone in a room: joins with a name, follows the host, sends one answer per question. */
-export function usePlayer(pinFromUrl: string | undefined) {
-  const saved = load()
+export function usePlayer(pinFromUrl: string | undefined, game: Game = 'kapisma') {
+  const saved = load(game)
   const form = reactive({
     pin: pinFromUrl ?? saved?.pin ?? '',
     name: saved?.name ?? '',
@@ -72,9 +76,16 @@ export function usePlayer(pinFromUrl: string | undefined) {
       const user = await signedIn()
       uid.value = user.uid
       const roomRef = doc(db, 'rooms', pin)
-      if (!(await getDoc(roomRef)).exists()) {
+      const found = await getDoc(roomRef)
+      if (!found.exists()) {
         status.value = 'idle'
         error.value = `${pin} numaralı bir oda yok. Ekrandaki numaraya bir daha bakın.`
+        return
+      }
+      const roomGame: Game = (found.data() as RoomDoc).game ?? 'kapisma'
+      if (roomGame !== game) {
+        status.value = 'idle'
+        location.hash = `${PHONE_PAGE[roomGame]}/${pin}`
         return
       }
       const meRef = doc(roomRef, 'players', user.uid)
@@ -82,7 +93,7 @@ export function usePlayer(pinFromUrl: string | undefined) {
       if ((await getDoc(meRef)).exists()) await updateDoc(meRef, { name })
       else await setDoc(meRef, { name, joinedAt: serverTimestamp() })
 
-      save({ pin, name })
+      save(game, { pin, name })
       form.pin = pin
       form.name = name
       stopListening()
@@ -134,7 +145,7 @@ export function usePlayer(pinFromUrl: string | undefined) {
   async function leave() {
     const pin = form.pin
     leaveLocally()
-    save(null)
+    save(game, null)
     if (uid.value) await deleteDoc(doc(db, 'rooms', pin, 'players', uid.value)).catch(() => {})
   }
 

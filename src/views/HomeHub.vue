@@ -14,6 +14,12 @@ const SHOWS = [
     how: 'Telefonlar hazır olsun',
   },
   {
+    href: '#/gunluk',
+    title: 'Kimin günlüğü?',
+    blurb: 'Birinin günlüğünden bir sayfa, isimsiz. Telefondan kimin olduğunu seçin; erken bilen çok puan alır.',
+    how: 'Telefonlar yine hazır olsun',
+  },
+  {
     href: '#/emoji',
     title: 'Emoji’den Filmi Bil',
     blurb: 'Emojilere bakın, filmi bulun. Her yanlış tahmin bir kare daha açar.',
@@ -34,7 +40,7 @@ const SIDE = 9
   <div class="hub">
     <header class="intro">
       <h1 class="tonight">Bu gece gösterimde</h1>
-      <p>Dalım’ın doğum günü. Önce yılın özeti, sonra iki oyun.</p>
+      <p>Dalım’ın doğum günü. Önce yılın özeti, sonra üç oyun.</p>
     </header>
 
     <nav class="sign" aria-label="Bu gecenin programı">

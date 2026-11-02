@@ -2,13 +2,14 @@
 import QRCode from 'qrcode'
 import { computed, ref, watchEffect } from 'vue'
 import { joinUrl } from '../../quiz/room'
+import { siteHost } from '../../siteUrl'
 import type { Player } from '../../quiz/useQuiz'
 
 const props = defineProps<{ pin: string; players: Player[]; questions: number }>()
 defineEmits<{ start: []; kick: [id: string]; newRoom: [] }>()
 
 const url = computed(() => joinUrl(props.pin))
-const shortUrl = computed(() => `${location.host}/#/katil`)
+const shortUrl = computed(() => `${siteHost()}/#/katil`)
 const qr = ref('')
 watchEffect(async () => {
   qr.value = await QRCode.toString(url.value, {

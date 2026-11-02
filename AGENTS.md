@@ -3,23 +3,24 @@
 Private emoji movie-guessing game for one friend group of five, played live on a shared screen with one person typing. Keep it small: static Vue 3 + Vite + TypeScript, no accounts, no scaling work. The only backend is Firebase (see below) for live Film Kapışması rooms; don't add a server of our own.
 
 ## Deploy
-Pushing to `master` deploys production to https://dalim-play.vercel.app (Vercel Git integration). Other branches get preview URLs. Run `npm test && npm run build` before committing.
+Pushing to `master` deploys production to https://iyikidogdundalim.arjendeniz.com (Vercel Git integration; https://dalim-play.vercel.app still works). On-screen links and QR codes use the custom domain in production (`src/siteUrl.ts`). Other branches get preview URLs. Run `npm test && npm run build` before committing.
 
 ## Content
 - Content comes from the players' Letterboxd exports (İrem, Nil, Arjen, Dalım; Su has no export, so what Su saw comes from Arjen’s "suy" tag), read on 2026-11-02. The raw exports stay out of the repo; only what the games need is copied in.
 - Emoji rounds are grouped into packs in `src/data/puzzles.ts` (`PACKS`). Order each puzzle's emojis vaguest → most obvious: one opens per wrong guess, and the emoji count is also the guess limit. A film appears in one pack only. `whoseFavorite` packs ask "Kimin favorisi?" after each film.
 - `src/data/groupSeen.ts` says who logged each pack film (stars, heart, this year, favourite); the round end shows it. `src/data/people.ts` lists all five; only the four with Letterboxd can have stars or favourites.
 - Dalım’ın 2026’sı (`#/dalim`) is a scroll-through reel of Dalım's year. Its numbers are hand-checked in `src/data/wrapped.ts` (with tests in `wrapped.test.ts`), one scene component per slide in `src/components/wrapped/`.
+- Kimin günlüğü? (`#/gunluk`, phones at `#/defter`) pages live in `src/data/diary.ts`: five lines each, three per owner, never the same owner twice in a row. `scripts/diary-pages.py` lists candidate pages from the exports; pick by hand. Timing and scoring are in `src/diary/`.
 - Film Kapışması (`#/kapisma`) questions live in `src/data/quiz.ts`: four options, `answer` is the right one's index (0–3), optional `seconds` (default 20). "Kim…?" questions keep the names in the same order.
 - `src/data/films.ts` is a hand-written stand-in for TMDB, so years and genres may be off; `src/data/groupFilms.ts` adds films from our Letterboxd logs (generated once, edit by hand). Genre keys map to TMDB genre ids for the planned TMDB swap. Film ids are `slug(title)-year`; the tests fail if a puzzle points at a missing film.
 
 ## Firebase (Film Kapışması)
-- Google Cloud / Firebase project `dalim-play` (owner arjendenizturkmen@gmail.com): Firestore in `europe-west3`, anonymous sign-in. The web config in `src/firebase.ts` is public by design.
+- Google Cloud / Firebase project `dalim-play` (owner arjendenizturkmen@gmail.com): Firestore in `europe-west3`, anonymous sign-in. Kimin günlüğü? uses the same rooms with `game: 'gunluk'` on the room doc, so the rules cover both games. The web config in `src/firebase.ts` is public by design.
 - Data model is in `src/quiz/room.ts`: `rooms/{pin}` written only by the host screen, `players/{uid}` and `answers/{round}_{uid}` written by phones.
 - Fairness lives in `firebase/firestore.rules`: one answer per player per round, only while the options are lit, timed on the server clock. After changing the rules run `npm run deploy:firebase` then `npm run check:rules` (probes the live rules with throwaway users and a test room).
 
 ## Plans
-Proposals are in `docs/`: Dalım Wrapped (`dalim-wrapped.md`, built as a scroll reel), Kimin günlüğü (`kimin-gunlugu.md`) and Kavga çıkaran filmler (`kavga-cikaran-filmler.md`).
+Proposals are in `docs/`: Dalım Wrapped (`dalim-wrapped.md`, built as a scroll reel), Kimin günlüğü (`kimin-gunlugu.md`) and Kavga çıkaran filmler (`kavga-cikaran-filmler.md`). Kimin günlüğü is built as its own phone game at `#/gunluk`; mixing it into Film Kapışması is not.
 
 ## Pages
 Each page is a component in `src/views/`, registered in `PAGES` in `src/useRoute.ts` (hash routes, which also adds the top-bar link). `#/` is the hub (`HomeHub.vue`) listing tonight's shows in play order; Emoji’den Filmi Bil lives at `#/emoji`. Wrapped scenes pin with `position: sticky` and read their scroll progress from the `v-scene` and `v-reveal` directives in `src/components/wrapped/scroll.ts`. Shared pieces go in `src/components/`, page-specific ones in a subfolder (for example `src/components/quiz/`).
