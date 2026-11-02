@@ -14,7 +14,7 @@ import {
   type Unsubscribe,
 } from 'firebase/firestore'
 import { computed, onScopeDispose, reactive, ref, watch } from 'vue'
-import { QUIZ, type QuizQuestion } from '../data/quiz'
+import { QUIZ_PACKS, type QuizQuestion } from '../data/quiz'
 import { db, signedIn } from '../firebase'
 import type { AnswerDoc, Phase, PlayerDoc, Reveal, RoomDoc } from './room'
 import { fastestCorrect, standings, tally, type Answer, type QuestionResult } from './scoring'
@@ -40,26 +40,33 @@ export interface Player {
 
 interface Saved {
   pin: string | null
+  /** Which question pack this game plays (QUIZ_PACKS id) */
+  pack: string
   index: number
   round: number
   phase: Phase
   results: QuestionResult[]
 }
 
-const BY_ID: Record<string, QuizQuestion> = Object.fromEntries(QUIZ.map((q) => [q.id, q]))
+const BY_ID: Record<string, QuizQuestion> = Object.fromEntries(
+  QUIZ_PACKS.flatMap((p) => p.questions).map((q) => [q.id, q]),
+)
+const packById = (id: string) => QUIZ_PACKS.find((p) => p.id === id) ?? QUIZ_PACKS[0]!
 
 function load(): Saved {
-  const fresh: Saved = { pin: null, index: 0, round: 0, phase: 'lobby', results: [] }
+  const fresh: Saved = { pin: null, pack: QUIZ_PACKS[0]!.id, index: 0, round: 0, phase: 'lobby', results: [] }
   try {
     const raw = localStorage.getItem(STORAGE_KEY)
     if (!raw) return fresh
     const s = JSON.parse(raw) as Saved
     if (typeof s.index !== 'number' || !Array.isArray(s.results)) return fresh
-    // questions may have been edited since: keep the room, drop the game
-    if (s.index >= QUIZ.length || s.results.some((r, i) => QUIZ[i]?.id !== r.questionId)) {
-      return { ...fresh, pin: s.pin, round: s.round ?? 0 }
+    const pack = packById(s.pack)
+    const qs = pack.questions
+    // questions may have been edited since: keep the room and pack, drop the game
+    if (s.index >= qs.length || s.results.some((r, i) => qs[i]?.id !== r.questionId)) {
+      return { ...fresh, pin: s.pin, pack: pack.id, round: s.round ?? 0 }
     }
-    return s
+    return { ...s, pack: pack.id }
   } catch {
     return fresh
   }
@@ -117,7 +124,8 @@ export function useQuiz() {
   })
 
   const roomRef = () => doc(db, 'rooms', state.pin!)
-  const question = computed(() => QUIZ[state.index]!)
+  const questions = computed(() => packById(state.pack).questions)
+  const question = computed(() => questions.value[state.index]!)
   const limitMs = computed(() => (question.value.seconds ?? DEFAULT_SECONDS) * 1000)
   const playerIds = computed(() => players.value.map((p) => p.id))
 
@@ -150,7 +158,7 @@ export function useQuiz() {
         createdAt: serverTimestamp(),
         phase: 'lobby',
         index: 0,
-        total: QUIZ.length,
+        total: questions.value.length,
         round: 0,
         openedAt: null,
         limitMs: 0,
@@ -185,6 +193,7 @@ export function useQuiz() {
     write({
       phase: 'reading',
       index: state.index,
+      total: questions.value.length,
       options: [...question.value.options],
       openedAt: null,
       reveal: null,
@@ -269,13 +278,20 @@ export function useQuiz() {
   function next() {
     if (state.phase === 'reveal') {
       clearTimeout(timer)
-      state.phase = state.index === QUIZ.length - 1 ? 'credits' : 'intermission'
+      state.phase = state.index === questions.value.length - 1 ? 'credits' : 'intermission'
       write({ phase: state.phase })
       autoAdvance()
     } else if (state.phase === 'intermission') {
       state.index++
       beginQuestion()
     }
+  }
+
+  /** Pick the question pack; only between games */
+  function choosePack(id: string) {
+    if (state.phase !== 'lobby') return
+    state.pack = packById(id).id
+    write({ total: questions.value.length })
   }
 
   function toLobby() {
@@ -317,7 +333,9 @@ export function useQuiz() {
   init()
 
   return {
-    total: QUIZ.length,
+    packs: QUIZ_PACKS.map((p) => ({ id: p.id, title: p.title, count: p.questions.length })),
+    choosePack,
+    total: computed(() => questions.value.length),
     state,
     connection,
     players,

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { QUIZ, type QuizQuestion } from '../data/quiz'
+import { QUIZ_PACKS, type QuizQuestion } from '../data/quiz'
 import { fastestCorrect, speedPoints, standings, streakBonus, tally, type QuestionResult } from './scoring'
 
 const q = (id: string, answer: 0 | 1 | 2 | 3): QuizQuestion => ({ id, question: id, options: ['a', 'b', 'c', 'd'], answer })
@@ -11,9 +11,12 @@ const res = (questionId: string, answers: QuestionResult['answers']): QuestionRe
 })
 
 describe('quiz data', () => {
-  it('has unique ids, four distinct options and an answer in range', () => {
-    expect(new Set(QUIZ.map((x) => x.id)).size).toBe(QUIZ.length)
-    for (const x of QUIZ) {
+  it('has unique ids across packs, four distinct options and an answer in range', () => {
+    expect(new Set(QUIZ_PACKS.map((p) => p.id)).size).toBe(QUIZ_PACKS.length)
+    const all = QUIZ_PACKS.flatMap((p) => p.questions)
+    for (const p of QUIZ_PACKS) expect(p.questions.length, p.id).toBeGreaterThan(0)
+    expect(new Set(all.map((x) => x.id)).size).toBe(all.length)
+    for (const x of all) {
       expect(x.options, x.id).toHaveLength(4)
       expect(new Set(x.options).size, x.id).toBe(4)
       expect(x.answer, x.id).toBeGreaterThanOrEqual(0)

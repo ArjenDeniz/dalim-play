@@ -5,8 +5,16 @@ import { joinUrl } from '../../quiz/room'
 import { siteHost } from '../../siteUrl'
 import type { Player } from '../../quiz/useQuiz'
 
-const props = defineProps<{ pin: string; players: Player[]; questions: number }>()
-defineEmits<{ start: []; kick: [id: string]; newRoom: [] }>()
+interface PackChoice {
+  id: string
+  title: string
+  count: number
+}
+
+const props = defineProps<{ pin: string; players: Player[]; packs: PackChoice[]; pack: string }>()
+defineEmits<{ start: []; kick: [id: string]; newRoom: []; pick: [id: string] }>()
+
+const questions = computed(() => props.packs.find((p) => p.id === props.pack)?.count ?? 0)
 
 const url = computed(() => joinUrl(props.pin))
 const shortUrl = computed(() => `${siteHost()}/#/katil`)
@@ -44,6 +52,18 @@ watchEffect(async () => {
         </li>
       </TransitionGroup>
       <p v-else class="empty">Henüz kimse yok. Katılan herkes burada belirir.</p>
+
+      <div class="packs" role="group" aria-label="Soru paketi">
+        <button
+          v-for="p in packs"
+          :key="p.id"
+          class="pack"
+          :aria-pressed="p.id === pack"
+          @click="$emit('pick', p.id)"
+        >
+          {{ p.title }} <span class="pack-count">{{ p.count }} soru</span>
+        </button>
+      </div>
 
       <div class="actions">
         <button class="primary" :disabled="!players.length" @click="$emit('start')">Gösterimi başlat</button>
@@ -201,6 +221,43 @@ watchEffect(async () => {
 .empty {
   margin: 0 0 24px;
   color: var(--mauve-text);
+}
+
+.packs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0 0 20px;
+}
+
+.pack {
+  padding: 10px 18px;
+  border-radius: 10px;
+  background: transparent;
+  box-shadow: inset 0 0 0 1.5px rgb(255 244 214 / 0.2);
+  color: var(--mauve-text);
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.pack:hover {
+  color: var(--screen);
+}
+
+/* the chosen pack is lit like a marquee bulb */
+.pack[aria-pressed='true'] {
+  background: rgb(242 193 78 / 0.14);
+  box-shadow:
+    inset 0 0 0 1.5px var(--bulb),
+    0 0 24px -8px rgb(242 193 78 / 0.6);
+  color: var(--bulb);
+}
+
+.pack-count {
+  margin-left: 6px;
+  font-weight: 400;
+  font-size: 0.9rem;
+  opacity: 0.8;
 }
 
 .actions {

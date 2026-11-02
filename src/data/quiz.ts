@@ -197,3 +197,160 @@ export const QUIZ: QuizQuestion[] = [
     answer: 2,
   },
 ]
+
+// Second pack, from the same exports: mostly İrem, Nil and Dalım.
+export const QUIZ_2: QuizQuestion[] = [
+  {
+    id: 'irem-nil-five',
+    question: 'İrem’le Nil’in ikisinin de 5 yıldız verdiği tek film hangisi?',
+    emoji: '🥬🧚',
+    options: ['Küçük Cadı Kiki', 'Luca', 'Lahana Perisi (1896)', 'Caramel'],
+    answer: 2, // the others: Nil 5, İrem 4,5 / 4 / 3,5
+  },
+  {
+    id: 'cabbage-dalim',
+    question: 'Bir dakikalık Lahana Perisi’ni Dalım kaç kez izledi?',
+    emoji: '🥬🔁',
+    options: ['1', '2', '5', '9'],
+    answer: 2, // gave it 4 stars every time
+    seconds: 15,
+  },
+  {
+    id: 'nil-old',
+    question: '1920 ile 1959 arasından tek bir film bile izlememiş kim?',
+    emoji: '📽️🚫',
+    options: US,
+    answer: NIL, // jumps from 1913 to the 1960s
+  },
+  {
+    id: 'dalim-country',
+    question: 'ABD’den sonra Dalım’ın en çok film izlediği ülke hangisi?',
+    emoji: '🌍🎬',
+    options: ['Türkiye', 'Fransa', 'Birleşik Krallık', 'Almanya'],
+    answer: 1, // 357; UK 200, Turkey 193, Germany 112
+  },
+  {
+    id: 'irem-half',
+    question: 'İrem bunların üçüne 5 yıldız verdi, birine yarım. Hangisine yarım?',
+    emoji: '⭐🫣',
+    options: ['Spirit', 'Grinin Elli Tonu', 'Lilo & Stitch', 'Ruhların Kaçışı'],
+    answer: 1, // İrem's only half star; Dalım gave it half too
+  },
+  {
+    id: 'happy-feet',
+    question: 'Nil’le Dalım 19 Kasım 2025’te yan yana 7 kısa film izledi. İkisinin de 1 yıldız verdiği hangisi?',
+    emoji: '🐧😬',
+    options: ['A Poet', 'Bimba', 'Happy Feet', 'Alis'],
+    answer: 2, // a 2025 short, not the penguins; Dalım had already seen it in March
+  },
+  {
+    id: 'dalim-genre',
+    question: 'Dalım’ın puan ortalaması en yüksek tür hangisi?',
+    emoji: '📊🎭',
+    options: ['Korku', 'Romantik', 'Belgesel', 'Animasyon'],
+    answer: 2, // 3,30; romance 3,12, horror 3,09, animation 3,02. Comedy is near the bottom with 2,89
+  },
+  {
+    id: 'irem-nil-hearts',
+    question: 'İrem’le Nil 36 ortak film izlemiş. Kaçına ikisi de kalp vermiş?',
+    emoji: '💔🤷',
+    options: ['0', '3', '8', '14'],
+    answer: 0,
+    seconds: 15,
+  },
+  {
+    id: 'irem-list-safe',
+    question: 'İrem’in “20 Öncelikli Film” listesinde notu “Carol’un yönetmeni” olan film hangisi?',
+    emoji: '📝🎀',
+    options: ['Far From Heaven', 'Safe', 'May December', 'Velvet Goldmine'],
+    answer: 1, // all four are Todd Haynes
+  },
+  {
+    id: 'irem-list-dalim',
+    question: 'O 20 filmin kaçını Dalım çoktan izlemiş?',
+    emoji: '📝✅',
+    options: ['2', '7', '11', '16'],
+    answer: 2, // Arjen 3, Nil 0
+  },
+  {
+    id: 'dalim-director-low',
+    question: 'Dalım bu yönetmenlerden hangisine ortalamada en düşük puanı veriyor?',
+    emoji: '🎬🙄',
+    options: ['Pedro Almodóvar', 'David Lynch', 'Wes Anderson', 'Hayao Miyazaki'],
+    answer: 2, // 2,72 over 9; Miyazaki 3,7, Almodóvar 3,94, Lynch 4,21
+  },
+  {
+    id: 'irem-nye',
+    question: 'İrem 2025’in son gecesini 11 kısa filmle geçirdi. En eskisi 1894’ten. Ne anlatıyor?',
+    emoji: '🎆🐈',
+    options: [
+      'Havada dönüp ayak üstü düşen bir kedi',
+      'Fabrikadan çıkan işçiler',
+      'İstasyona giren bir tren',
+      'Hapşıran bir adam',
+    ],
+    answer: 0, // Falling Cat, Étienne-Jules Marey. 5 stars
+  },
+  {
+    id: 'nil-losers',
+    question: 'Nil hangisine 1 yıldız verdi?',
+    emoji: '🇹🇷⭐',
+    options: ['Kuru Otlar Üstüne', 'Kaybedenler Kulübü', 'Kurak Günler', 'Ölümlü Dünya'],
+    answer: 1, // the others: 5, 4,5, 4
+    seconds: 15,
+  },
+  {
+    id: 'irem-dalim-shared',
+    question: 'İrem’le Dalım’ın ikisinin de izlediği kaç film var?',
+    emoji: '👯🎞️',
+    options: ['65', '145', '265', '385'],
+    answer: 2, // 59 of them got the same stars from both
+  },
+  {
+    id: 'dalim-tv-glow',
+    question: 'Dalım’ın 5 kez izleyip 5 kez inceleme yazdığı film hangisi?',
+    emoji: '📺💜',
+    options: ['Aftersun', 'I Saw the TV Glow', 'Carol', 'Portrait of a Lady on Fire'],
+    answer: 1,
+  },
+  {
+    id: 'nil-watchlist',
+    question: 'Nil’in izleme listesinde 111 film var. Kaçını Dalım çoktan izlemiş?',
+    emoji: '📋👀',
+    options: ['11', '38', '66', '94'],
+    answer: 2,
+  },
+  {
+    id: 'irem-dalim-five',
+    question: 'İrem’le Dalım’ın ikisinin de 5 yıldız verdiği film hangisi?',
+    emoji: '🐺🌲',
+    options: ['Moana', 'Çılgın Hırsız', 'Zootropolis', 'Prenses Mononoke'],
+    answer: 3, // Moana: İrem 5, Dalım 2,5
+  },
+  {
+    id: 'kardes-turkuler',
+    question: 'Kardeş Türküler ile 30 Yıl’a kalp veren ikili kim?',
+    emoji: '🎻❤️',
+    options: ['İrem ve Nil', 'Nil ve Dalım', 'İrem ve Dalım', 'Arjen ve Dalım'],
+    answer: 1, // İrem gave 4,5 without a heart
+  },
+  {
+    id: 'dalim-first',
+    question: 'Dalım’ın Letterboxd günlüğündeki ilk film hangisi? 2 Ocak 2021.',
+    emoji: '📔🌌',
+    options: ['Five Feet Apart', 'Split', 'The Midnight Sky', 'Soul'],
+    answer: 2, // Five Feet Apart on the 10th, Split on the 13th
+  },
+]
+
+export interface QuizPack {
+  id: string
+  /** Shown in the lobby's pack picker */
+  title: string
+  questions: QuizQuestion[]
+}
+
+export const QUIZ_PACKS: QuizPack[] = [
+  { id: 'seans-1', title: '1. seans', questions: QUIZ },
+  { id: 'seans-2', title: '2. seans', questions: QUIZ_2 },
+]

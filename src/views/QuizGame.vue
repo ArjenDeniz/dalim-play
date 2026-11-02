@@ -56,7 +56,7 @@ watch(
       <h1 class="logo">Film Kapışması</h1>
       <div v-if="state.phase !== 'lobby' && state.phase !== 'credits'" class="progress">
         <span class="count">Oda {{ state.pin }}</span>
-        <span class="count">Soru {{ state.index + 1 }} / {{ quiz.total }}</span>
+        <span class="count">Soru {{ state.index + 1 }} / {{ quiz.total.value }}</span>
         <button class="link" @click="quiz.toLobby">Oyunu bitir</button>
       </div>
     </header>
@@ -72,7 +72,9 @@ watch(
       v-else-if="state.phase === 'lobby'"
       :pin="state.pin!"
       :players="players"
-      :questions="quiz.total"
+      :packs="quiz.packs"
+      :pack="state.pack"
+      @pick="quiz.choosePack"
       @start="quiz.start"
       @kick="quiz.kick"
       @new-room="quiz.newRoom"
@@ -112,7 +114,7 @@ watch(
           :style="{ '--auto-ms': `${REVEAL_MS}ms` }"
           @click="quiz.next"
         >
-          {{ state.index === quiz.total - 1 ? 'Jeneriğe geç' : 'Puan durumu' }}
+          {{ state.index === quiz.total.value - 1 ? 'Jeneriğe geç' : 'Puan durumu' }}
         </button>
       </div>
 
@@ -134,7 +136,7 @@ watch(
       :after="quiz.standings.value"
       :gained="gained"
       :done="state.index + 1"
-      :total="quiz.total"
+      :total="quiz.total.value"
       :auto-ms="BOARD_MS"
       @next="quiz.next"
     />
