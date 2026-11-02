@@ -3,11 +3,18 @@ import ClueTicket from '../components/ClueTicket.vue'
 import FilmSearch from '../components/FilmSearch.vue'
 import FilmStrip from '../components/FilmStrip.vue'
 import GuessList from '../components/GuessList.vue'
+import PackPicker from '../components/PackPicker.vue'
 import RoundEnd from '../components/RoundEnd.vue'
+import SeenRow from '../components/SeenRow.vue'
+import WhoseFavorite from '../components/WhoseFavorite.vue'
 import { useGame } from '../game/useGame'
 
 const game = useGame()
-const { round, puzzle, answer, view, guessedIds, totalRounds } = game
+const { pack, round, puzzle, answer, view, guessedIds, total, seen, whosePick } = game
+
+function resetPack() {
+  if (window.confirm(`“${pack.value.title}” paketindeki tüm tahminler silinsin mi?`)) game.resetPack()
+}
 </script>
 
 <template>
@@ -16,15 +23,25 @@ const { round, puzzle, answer, view, guessedIds, totalRounds } = game
       <h1 class="logo">Emoji’den Filmi Bil</h1>
       <nav class="rounds" aria-label="Turlar">
         <button class="icon" aria-label="Önceki film" @click="game.goTo(round - 1)">←</button>
-        <span class="count">Film {{ round + 1 }} / {{ totalRounds }}</span>
+        <span class="count">Film {{ round + 1 }} / {{ total }}</span>
         <button class="icon" aria-label="Sonraki film" @click="game.goTo(round + 1)">→</button>
       </nav>
     </header>
 
-    <p class="intro">Emojilere bakın, filmi bulun. Her yanlış tahmin bir kare daha açar.</p>
+    <PackPicker
+      class="picker"
+      :packs="game.packs"
+      :current="pack.id"
+      :statuses="game.statuses"
+      @pick="game.choosePack"
+    />
+
+    <p class="intro">
+      {{ pack.blurb }} Emojilere bakın, filmi bulun: her yanlış tahmin bir kare daha açar.
+    </p>
 
     <main class="stage">
-      <FilmStrip :key="round" :emojis="puzzle.emojis" :revealed="view.revealedEmojis" />
+      <FilmStrip :key="`${pack.id}-${round}`" :emojis="puzzle.emojis" :revealed="view.revealedEmojis" />
 
       <ClueTicket :genres="answer.genres" :known="view.knownGenres" :year="view.year" />
 
@@ -38,19 +55,26 @@ const { round, puzzle, answer, view, guessedIds, totalRounds } = game
 
       <RoundEnd
         v-else
-        :key="`end-${round}`"
+        :key="`end-${pack.id}-${round}`"
         :won="view.status === 'won'"
         :film="answer"
         :tries="view.results.length"
-        :is-last="round === totalRounds - 1"
+        :is-last="round === total - 1"
+        :focus-next="!pack.whoseFavorite || !!whosePick"
         @next="game.goTo(round + 1)"
         @replay="game.resetRound"
-      />
+      >
+        <WhoseFavorite v-if="pack.whoseFavorite" :seen="seen" :picked="whosePick" @pick="game.pickWhose" />
+        <SeenRow v-if="!pack.whoseFavorite || whosePick" :seen="seen" />
+      </RoundEnd>
 
       <GuessList :results="view.results" />
     </main>
 
-    <p class="reset"><button class="link" @click="game.resetRound">Bu turu sıfırla</button></p>
+    <p class="reset">
+      <button class="link" @click="game.resetRound">Bu turu sıfırla</button>
+      <button class="link" @click="resetPack">Bu paketi baştan başlat</button>
+    </p>
   </div>
 </template>
 
@@ -88,8 +112,12 @@ const { round, puzzle, answer, view, guessedIds, totalRounds } = game
   color: var(--mauve-text);
 }
 
+.picker {
+  margin-top: 24px;
+}
+
 .intro {
-  margin: 12px 0 36px;
+  margin: 18px 0 36px;
   font-size: 1.15rem;
   color: var(--mauve-text);
   max-width: 60ch;
@@ -121,5 +149,8 @@ const { round, puzzle, answer, view, guessedIds, totalRounds } = game
 
 .reset {
   margin: 40px 0 0;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 </style>

@@ -2,11 +2,20 @@
 import { onMounted, ref } from 'vue'
 import type { Film } from '../data/types'
 
-const props = defineProps<{ won: boolean; film: Film; tries: number; isLast: boolean }>()
+const props = defineProps<{
+  won: boolean
+  film: Film
+  tries: number
+  isLast: boolean
+  /** Off when something in the slot wants the focus first */
+  focusNext?: boolean
+}>()
 defineEmits<{ next: []; replay: [] }>()
 
 const nextBtn = ref<HTMLButtonElement>()
-onMounted(() => nextBtn.value?.focus())
+onMounted(() => {
+  if (props.focusNext !== false) nextBtn.value?.focus()
+})
 
 const heading = props.won ? (props.tries === 1 ? 'İlk tahminde! 🤯' : `${props.tries}. tahminde bildiniz 🍿`) : 'Perde indi 🕯️'
 </script>
@@ -18,9 +27,10 @@ const heading = props.won ? (props.tries === 1 ? 'İlk tahminde! 🤯' : `${prop
     <p class="meta">
       <span v-if="film.trTitle">{{ film.trTitle }}, </span>{{ film.year }}
     </p>
+    <slot />
     <div class="actions">
       <button ref="nextBtn" class="primary" @click="$emit('next')">
-        {{ isLast ? 'Baştaki filme dön' : 'Sonraki film' }}
+        {{ isLast ? 'Paketin başına dön' : 'Sonraki film' }}
       </button>
       <button class="ghost" @click="$emit('replay')">Bu turu baştan oyna</button>
     </div>

@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest'
 import { FILMS, FILMS_BY_ID } from '../data/films'
 import { GENRES } from '../data/genres'
-import { PUZZLES } from '../data/puzzles'
+import { SEEN } from '../data/groupSeen'
+import { PACKS } from '../data/puzzles'
 import type { Puzzle } from '../data/types'
 import { normalize, searchFilms, viewRound, type Attempt } from './logic'
 
@@ -15,8 +16,21 @@ describe('data', () => {
     expect(new Set(FILMS.map((f) => f.id)).size).toBe(FILMS.length)
     for (const f of FILMS) for (const genre of f.genres) expect(GENRES).toHaveProperty(genre)
   })
-  it('every puzzle points at a film in the list', () => {
-    for (const p of PUZZLES) expect(FILMS_BY_ID[p.filmId], p.filmId).toBeDefined()
+  it('every puzzle points at a film in the list, once per pack', () => {
+    for (const pack of PACKS) {
+      const ids = pack.puzzles.map((p) => p.filmId)
+      expect(new Set(ids).size, pack.id).toBe(ids.length)
+      for (const id of ids) expect(FILMS_BY_ID[id], id).toBeDefined()
+    }
+  })
+  it('no film shows up in two packs', () => {
+    const ids = PACKS.flatMap((p) => p.puzzles.map((z) => z.filmId))
+    expect(new Set(ids).size).toBe(ids.length)
+  })
+  it('every favourites film has an owner to guess', () => {
+    for (const pack of PACKS.filter((p) => p.whoseFavorite))
+      for (const { filmId } of pack.puzzles)
+        expect(Object.values(SEEN[filmId] ?? {}).some((s) => s.favorite), filmId).toBe(true)
   })
 })
 

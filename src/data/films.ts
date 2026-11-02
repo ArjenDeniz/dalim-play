@@ -1,27 +1,11 @@
-import type { Genre } from './genres'
+import { f } from './filmHelpers'
+import { GROUP_FILMS } from './groupFilms'
 import type { Film } from './types'
 
 // Fixed, hand-written list for local play. Years and genres are close to TMDB but
 // written from memory, so double-check anything that looks off. Swap for TMDB later.
 
-const slug = (s: string) =>
-  s
-    .normalize('NFD')
-    .replace(/[̀-ͯ]/g, '')
-    .replace(/ı/g, 'i')
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/(^-|-$)/g, '')
-
-const f = (title: string, year: number, genres: string, trTitle?: string): Film => ({
-  id: `${slug(title)}-${year}`,
-  title,
-  trTitle,
-  year,
-  genres: genres.split(' ') as Genre[],
-})
-
-export const FILMS: Film[] = [
+const HAND_PICKED: Film[] = [
   // Classics
   f('Casablanca', 1942, 'drama romance war'),
   f('Citizen Kane', 1941, 'drama mystery', 'Yurttaş Kane'),
@@ -415,6 +399,20 @@ export const FILMS: Film[] = [
   f('Sinners', 2025, 'horror action thriller', 'Günahkarlar'),
   f('Weapons', 2025, 'horror mystery'),
   f('Teenage Sex and Death at Camp Miasma', 2026, 'horror comedy'),
+]
+
+// The group's own Letterboxd films come after, so guesses can find what we've watched.
+const GROUP_TR_TITLES: Record<string, string> = {
+  'howl-s-moving-castle-2004': 'Yürüyen Şato',
+  'charlie-and-the-chocolate-factory-2005': 'Charlie’nin Çikolata Fabrikası',
+  'puss-in-boots-the-last-wish-2022': 'Çizmeli Kedi: Son Dilek',
+  'scott-pilgrim-vs-the-world-2010': 'Scott Pilgrim Dünyaya Karşı',
+  'wuthering-heights-2026': 'Uğultulu Tepeler',
+}
+
+export const FILMS: Film[] = [
+  ...HAND_PICKED,
+  ...GROUP_FILMS.map((film) => ({ ...film, trTitle: GROUP_TR_TITLES[film.id] ?? film.trTitle })),
 ]
 
 export const FILMS_BY_ID: Record<string, Film> = Object.fromEntries(FILMS.map((film) => [film.id, film]))

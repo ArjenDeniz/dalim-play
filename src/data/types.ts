@@ -15,3 +15,13 @@ export interface Puzzle {
   /** Ordered from vaguest to most obvious. One extra emoji opens per wrong guess. */
   emojis: string[]
 }
+
+export interface Pack {
+  id: string
+  title: string
+  /** One line under the title in the pack picker */
+  blurb: string
+  puzzles: Puzzle[]
+  /** After each film, guess whose favourite it is */
+  whoseFavorite?: boolean
+}
