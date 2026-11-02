@@ -1,61 +1,31 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import ClueTicket from './components/ClueTicket.vue'
+import { computed, ref } from 'vue'
 import CreditsDialog from './components/CreditsDialog.vue'
-import FilmSearch from './components/FilmSearch.vue'
-import FilmStrip from './components/FilmStrip.vue'
-import GuessList from './components/GuessList.vue'
-import RoundEnd from './components/RoundEnd.vue'
-import { useGame } from './game/useGame'
+import { PAGES, useRoute } from './useRoute'
 
-const game = useGame()
-const { round, puzzle, answer, view, guessedIds, totalRounds } = game
+const route = useRoute()
+const page = computed(() => route.value.page)
+const nav = PAGES.filter((p) => p.label)
 const credits = ref<InstanceType<typeof CreditsDialog>>()
 </script>
 
 <template>
-  <div class="page">
-    <header class="top">
-      <h1 class="logo">Emoji’den Filmi Bil</h1>
-      <nav class="rounds" aria-label="Turlar">
-        <button class="icon" aria-label="Önceki film" @click="game.goTo(round - 1)">←</button>
-        <span class="count">Film {{ round + 1 }} / {{ totalRounds }}</span>
-        <button class="icon" aria-label="Sonraki film" @click="game.goTo(round + 1)">→</button>
-      </nav>
-    </header>
+  <div class="page" :class="{ bare: page.bare }" :style="{ '--page-w': `${page.width}px` }">
+    <nav v-if="!page.bare" class="marquee" aria-label="Oyunlar">
+      <span class="tonight">Bu gece gösterimde</span>
+      <a
+        v-for="p in nav"
+        :key="p.hash"
+        :href="p.hash"
+        class="show"
+        :aria-current="page === p ? 'page' : undefined"
+      >{{ p.label }}</a>
+    </nav>
 
-    <p class="intro">Emojilere bakın, filmi bulun. Her yanlış tahmin bir kare daha açar.</p>
+    <component :is="page.view" :key="page.hash" :param="route.param" />
 
-    <main class="stage">
-      <FilmStrip :key="round" :emojis="puzzle.emojis" :revealed="view.revealedEmojis" />
-
-      <ClueTicket :genres="answer.genres" :known="view.knownGenres" :year="view.year" />
-
-      <div v-if="view.status === 'playing'" class="play">
-        <FilmSearch :films="game.films" :exclude="guessedIds" @pick="game.guess" />
-        <div class="play-meta">
-          <span>Kalan hak: <strong>{{ view.attemptsLeft }}</strong></span>
-          <button class="ghost" @click="game.skip">Pas geç, bir kare aç</button>
-        </div>
-      </div>
-
-      <RoundEnd
-        v-else
-        :key="`end-${round}`"
-        :won="view.status === 'won'"
-        :film="answer"
-        :tries="view.results.length"
-        :is-last="round === totalRounds - 1"
-        @next="game.goTo(round + 1)"
-        @replay="game.resetRound"
-      />
-
-      <GuessList :results="view.results" />
-    </main>
-
-    <footer class="foot">
+    <footer v-if="!page.bare" class="foot">
       <button class="link" @click="credits?.open()">Görsel kaynakları</button>
-      <button class="link" @click="game.resetRound">Bu turu sıfırla</button>
     </footer>
 
     <CreditsDialog ref="credits" />
@@ -64,73 +34,60 @@ const credits = ref<InstanceType<typeof CreditsDialog>>()
 
 <style scoped>
 .page {
-  width: min(820px, 100% - 32px);
+  width: min(var(--page-w), 100% - 32px);
   margin: 0 auto;
-  padding: 40px 0 220px;
+  padding: 20px 0 220px;
 }
 
-.top {
+.page.bare {
+  padding: 16px 0 24px;
+}
+
+.marquee {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
+  align-items: baseline;
   flex-wrap: wrap;
+  gap: 4px 18px;
+  margin-bottom: 36px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgb(255 244 214 / 0.1);
 }
 
-.logo {
-  margin: 0;
-  font-family: var(--display);
-  font-weight: 400;
-  font-size: clamp(2.2rem, 6vw, 3.4rem);
-  line-height: 1;
-  color: var(--bulb);
-  text-shadow:
-    0 0 6px rgb(242 193 78 / 0.6),
-    0 0 28px rgb(193 18 31 / 0.55);
-}
-
-.rounds {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.count {
-  min-width: 7.5ch;
-  text-align: center;
-  font-variant-numeric: tabular-nums;
+.tonight {
   color: var(--mauve-text);
+  font-size: 0.95rem;
 }
 
-.intro {
-  margin: 12px 0 36px;
-  font-size: 1.15rem;
-  color: var(--mauve-text);
-  max-width: 60ch;
-}
-
-.stage {
-  display: grid;
-  gap: 28px;
-}
-
-.play {
-  display: grid;
-  gap: 12px;
-}
-
-.play-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  color: var(--mauve-text);
-}
-
-.play-meta strong {
+.show {
+  position: relative;
   color: var(--screen);
-  font-variant-numeric: tabular-nums;
+  text-decoration: none;
+  font-weight: 650;
+  opacity: 0.6;
+}
+
+.show:hover {
+  opacity: 1;
+}
+
+.show[aria-current='page'] {
+  opacity: 1;
+  color: var(--bulb);
+  text-shadow: 0 0 12px rgb(242 193 78 / 0.55);
+}
+
+/* a lit bulb under the film that's showing */
+.show[aria-current='page']::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -18px;
+  width: 7px;
+  height: 7px;
+  margin-left: -3.5px;
+  border-radius: 50%;
+  background: var(--bulb);
+  box-shadow: 0 0 10px 2px rgb(242 193 78 / 0.7);
 }
 
 .foot {

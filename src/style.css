@@ -7,6 +7,16 @@
   --mauve: #6d597a;
   --mauve-text: #b3a0bf; /* mauve lifted for AA contrast on velvet */
 
+  /* Film Kapışması option lamps: blood, haunted purple, marquee bulb, TV glow */
+  --opt-0: #c1121f;
+  --opt-0-ink: var(--screen);
+  --opt-1: #7b2cbf;
+  --opt-1-ink: var(--screen);
+  --opt-2: var(--bulb);
+  --opt-2-ink: var(--velvet);
+  --opt-3: #8eecf5;
+  --opt-3-ink: var(--velvet);
+
   --display: 'Limelight', serif;
   --body: 'Bricolage Grotesque', system-ui, sans-serif;
 

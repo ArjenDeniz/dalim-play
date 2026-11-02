@@ -10,10 +10,20 @@ Vue 3 + Vite + TypeScript, static, deployed with the Vercel CLI.
 - The year narrows: guessing 2013 for a 2011 film shows `? < 📅 < 2013`. 🔥 means within 2 years.
 - Run out of emojis and the round ends ("Perde indi").
 
+## Film Kapışması (`#/kapisma`)
+A quiz for the whole group: the host screen (TV or laptop) shows the questions, everyone answers on their phone.
+- Open `#/kapisma` on the big screen. It opens a room with a 4-digit number and a QR code. Phones scan it or go to `#/katil` and type the number and a name.
+- The question shows alone for 4 seconds, then the four options light up and the countdown runs (20 s by default).
+- A right answer scores 1000 at once and falls to 500 at the buzzer, timed on the Firebase server clock. A streak adds +100 per question, up to +300. The first tap locks in.
+- Enter or Space on the host moves on to the scoreboard ("Ara") and the next question. The final screen rolls the credits.
+- Live rooms use Firebase (project `dalim-play`). Rules are in `firebase/firestore.rules`; deploy with `npm run deploy:firebase`, then check with `npm run check:rules`.
+- To try it with real phones on the local network, run `npm run dev -- --host` and open the host page on the laptop's network address, not `localhost`, so the QR code points somewhere phones can reach.
+
 ## Content
 - `src/data/films.ts` — the fixed list of guessable films (title, optional Turkish title, year, genres).
   Written by hand; double-check years/genres. Genre keys map to TMDB genre ids for a later TMDB swap.
 - `src/data/puzzles.ts` — the rounds: a film id plus emojis ordered vaguest → most obvious.
+- `src/data/quiz.ts` — Film Kapışması questions: four options plus the index of the right one. The current ones are test questions.
 - `public/img/` — images from the moodboard pack (Wikimedia Commons); credits are in the in-app "Görsel kaynakları" dialog.
 
 ## Commands
