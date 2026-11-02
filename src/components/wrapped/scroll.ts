@@ -1,6 +1,6 @@
 import type { Directive } from 'vue'
 
-// Scroll machinery for Dalim'in 2026'sı. Two directives, no library:
+// Scroll machinery for Dalım'ın 2026'sı. Two directives, no library:
 //   v-scene  on a tall section with a sticky inside: sets --p (0 → 1) as the section scrolls past,
 //            and calls the bound function with it, if any.
 //   v-reveal on anything: adds `.in` once it is a third of the way into view.

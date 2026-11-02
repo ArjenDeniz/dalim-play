@@ -27,7 +27,7 @@ export const PACKS: Pack[] = [
   {
     id: 'favoriler',
     title: 'Favorilerimiz',
-    blurb: 'Profil favorilerimiz ve Dalim’in 5 yıldız artı kalp verdikleri. Film bilinince sıra “kimin favorisi?” sorusunda.',
+    blurb: 'Profil favorilerimiz ve Dalım’ın 5 yıldız artı kalp verdikleri. Film bilinince sıra “kimin favorisi?” sorusunda.',
     whoseFavorite: true,
     puzzles: [
       { filmId: 'mary-and-max-2009', emojis: ['🇦🇺', '🗽', '✉️', '🍫', '🐟', '👧', '👨‍🦲', '🫂'] },

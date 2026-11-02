@@ -12,25 +12,25 @@ export interface QuizQuestion {
   seconds?: number
 }
 
-// "Kim…?" questions always list us in the same order, so the colours stay put: İrem, Nil, Arjen, Dalim.
-const US: [string, string, string, string] = ['İrem', 'Nil', 'Arjen', 'Dalim']
+// "Kim…?" questions always list us in the same order, so the colours stay put: İrem, Nil, Arjen, Dalım.
+const US: [string, string, string, string] = ['İrem', 'Nil', 'Arjen', 'Dalım']
 const IREM = 0 as const
 const NIL = 1 as const
 const ARJEN = 2 as const
 const DALIM = 3 as const
 
-// Facts come from our Letterboxd exports of 2026-11-02 (Dalim's from the extracted CSV).
+// Facts come from our Letterboxd exports of 2026-11-02 (Dalım's from the extracted CSV).
 export const QUIZ: QuizQuestion[] = [
   {
     id: 'varda',
     question: 'Agnès Varda’nın en çok filmini kim izlemiş?',
     emoji: '🥔🎞️',
     options: US,
-    answer: ARJEN, // 18, Dalim 15, İrem 5, Nil 0
+    answer: ARJEN, // 18, Dalım 15, İrem 5, Nil 0
   },
   {
     id: 'dalim-2026-count',
-    question: 'Dalim 2026’da kaç film izledi?',
+    question: 'Dalım 2026’da kaç film izledi?',
     emoji: '🎂🍿',
     options: ['212', '368', '524', '701'],
     answer: 2,
@@ -74,7 +74,7 @@ export const QUIZ: QuizQuestion[] = [
   },
   {
     id: 'dalim-director',
-    question: 'Dalim’in en çok filmini izlediği yönetmen kim?',
+    question: 'Dalım’ın en çok filmini izlediği yönetmen kim?',
     emoji: '🎬👑',
     options: ['Pedro Almodóvar', 'Alice Guy-Blaché', 'Agnès Varda', 'François Ozon'],
     answer: 1, // 72, then Almodóvar 25
@@ -103,7 +103,7 @@ export const QUIZ: QuizQuestion[] = [
   },
   {
     id: 'wuthering',
-    question: 'Dalim yeni Wuthering Heights’a kaç yıldız verdi?',
+    question: 'Dalım yeni Wuthering Heights’a kaç yıldız verdi?',
     emoji: '🌬️⛰️',
     options: ['Yarım', '2', '3,5', '5'],
     answer: 0,
@@ -114,7 +114,7 @@ export const QUIZ: QuizQuestion[] = [
     question: 'Yürüyen Şato’ya 5 yıldız veren tek kişi kim?',
     emoji: '🏰🔥',
     options: US,
-    answer: IREM, // Nil and Dalim gave 4
+    answer: IREM, // Nil and Dalım gave 4
   },
   {
     id: 'oldest',
@@ -135,12 +135,12 @@ export const QUIZ: QuizQuestion[] = [
     question: 'Karlar Ülkesi’ne 4 yıldız ve kalp veren kim?',
     emoji: '⛄❄️',
     options: US,
-    answer: NIL, // Dalim gave 2,5
+    answer: NIL, // Dalım gave 2,5
     seconds: 15,
   },
   {
     id: 'eeaao',
-    question: 'Everything Everywhere All at Once’a Dalim 5 yıldız ve kalp verdi. Arjen kaç verdi?',
+    question: 'Everything Everywhere All at Once’a Dalım 5 yıldız ve kalp verdi. Arjen kaç verdi?',
     emoji: '🥯👀',
     options: ['5', '4', '3', '1,5'],
     answer: 3,
@@ -154,7 +154,7 @@ export const QUIZ: QuizQuestion[] = [
   },
   {
     id: 'dalim-days',
-    question: 'Dalim’in izlediği her şey arka arkaya oynasa kaç gün sürerdi?',
+    question: 'Dalım’ın izlediği her şey arka arkaya oynasa kaç gün sürerdi?',
     emoji: '⏱️🛋️',
     options: ['40 gün', '70 gün', '110 gün', '160 gün'],
     answer: 2, // about 2,630 hours
@@ -178,7 +178,7 @@ export const QUIZ: QuizQuestion[] = [
     id: 'miasma',
     question: 'Teenage Sex and Death at Camp Miasma’ya 5 yıldız veren ikili kim?',
     emoji: '🏕️🔪',
-    options: ['İrem ve Nil', 'Nil ve Dalim', 'Arjen ve Dalim', 'İrem ve Arjen'],
+    options: ['İrem ve Nil', 'Nil ve Dalım', 'Arjen ve Dalım', 'İrem ve Arjen'],
     answer: 2,
   },
 ]

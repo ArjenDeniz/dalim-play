@@ -1,21 +1,21 @@
-# Dalim Wrapped
+# Dalım Wrapped
 
-A year-in-film reel for Dalim's birthday: about fifteen full-screen slides on the TV, played before the games start. It works like Spotify Wrapped, but built from Dalim's Letterboxd year and dressed as a night at the cinema.
+A year-in-film reel for Dalım's birthday: about fifteen full-screen slides on the TV, played before the games start. It works like Spotify Wrapped, but built from Dalım's Letterboxd year and dressed as a night at the cinema.
 
-- **Route:** `#/dalim` (with a link in the top bar: "Dalim’in 2026’sı")
+- **Route:** `#/dalim` (with a link in the top bar: "Dalım’ın 2026’sı")
 - **Players:** nobody answers anything. One person moves the slides on and everyone watches.
 - **Length:** 4–6 minutes, depending on how much the room talks
 - **Status:** built (2026-11-02) as one long scroll reel instead of click-through slides: each slide is a full-screen scene that plays out as you scroll, and → / ← jump a whole scene. Hub at `#/`.
 
 ## Why this one
 
-The night is Dalim's birthday, and the two existing games are about the whole group. This gives the birthday one moment of its own. It also warms the room up for the quizzes, because a lot of the Film Kapışması answers (Alice Guy, 61 horror films, the half-star for Wuthering Heights) show up here first. People who were paying attention get a small edge later.
+The night is Dalım's birthday, and the two existing games are about the whole group. This gives the birthday one moment of its own. It also warms the room up for the quizzes, because a lot of the Film Kapışması answers (Alice Guy, 61 horror films, the half-star for Wuthering Heights) show up here first. People who were paying attention get a small edge later.
 
 Every number comes from data we already have, so nobody has to write any content. The work is the presentation.
 
 ## How it plays
 
-1. The host opens `#/dalim` on the TV. The page starts dark, with only a projector hum and the title card: "Dalim’in 2026’sı" in marquee bulbs.
+1. The host opens `#/dalim` on the TV. The page starts dark, with only a projector hum and the title card: "Dalım’ın 2026’sı" in marquee bulbs.
 2. Space, Enter, → or a click moves to the next slide. ← goes back. Nothing advances on its own: the room decides when to stop laughing.
 3. Each slide opens with one short reveal: a counter rolling up, a list dropping in line by line, or a curtain opening. After that the slide stays still.
 4. The last slide hands over to the games: "Şimdi sıra sizde" with buttons for Film Kapışması and Emoji’den Filmi Bil.
@@ -24,10 +24,10 @@ A thin progress line runs along the bottom, like the film counter on a projector
 
 ## The slides
 
-All numbers are for 2026, up to 1 November, from Dalim's CSV (`last_logged` in 2026), unless a slide says otherwise. Copy is Turkish, casual and gender-neutral. The English after each slide is for us.
+All numbers are for 2026, up to 1 November, from Dalım's CSV (`last_logged` in 2026), unless a slide says otherwise. Copy is Turkish, casual and gender-neutral. The English after each slide is for us.
 
 ### 1. Title card
-> **Dalim’in 2026’sı**
+> **Dalım’ın 2026’sı**
 > Bir yılın filmleri, tek gecede.
 
 Marquee bulbs light letter by letter. This is the one big motion moment of the reel; everything after it is quieter.
@@ -58,7 +58,7 @@ The 15 films of that day laid out on a timeline from *Blacksmith Scene* (1893) t
 
 ### 6. Director of the year
 > **Alice Guy-Blaché**
-> 2026’da 71 filmi. Sinemanın ilk kadın yönetmeni, Dalim’in bu yılki en yakın arkadaşı.
+> 2026’da 71 filmi. Sinemanın ilk kadın yönetmeni, Dalım’ın bu yılki en yakın arkadaşı.
 
 Runner-up line: "Sonra Frances Arpaia (10), David Lynch (6) ve James Cameron (5)." The Cameron entry is a good laugh next to Alice Guy.
 
@@ -97,13 +97,13 @@ A blackout, then one title card under a single spotlight. Film Kapışması asks
 If there's time, list the most notable ones. The CSV marks `rewatched` but doesn't count how many times.
 
 ### 13. Film twin
-> **Dalim’in film ikizi: İrem**
+> **Dalım’ın film ikizi: İrem**
 > Birlikte puanladıkları 214 filmde ortalama sadece 0,65 yıldız fark.
 
 Then the other two pairs underneath: Arjen 0,82 (123 films), Nil 0,84 (85 films). Show it as two ticket stubs that tear and match up.
 
 ### 14. Same films, one day apart
-> **4 Şubat’ta İrem, 5 Şubat’ta Dalim**
+> **4 Şubat’ta İrem, 5 Şubat’ta Dalım**
 > Aynı Alice Guy kısaları, bir gün arayla.
 
 Two diary columns side by side: *The Burglars*, *Wonderful Absinthe*, *At the Club*, *Disappearing Act*, *Eccentric Dance*… This needs nothing beyond what's in the exports. Confirm with the two of them that it's a fun fact and not a sore point.
@@ -133,7 +133,7 @@ Numbers to double-check before the party, because the CSV has quirks:
 | Slide | Value | Watch out for |
 |---|---|---|
 | 2 | 524 films, 216 days | `last_logged` is the last diary date; a film first seen in 2025 and rewatched in 2026 counts as 2026 |
-| 3 | 469 hours | 179 of Dalim's films have no runtime, and a few CSV runtimes are nonsense (Oppenheimer at 10,809 min). Anything over 400 min is skipped, so the real number is a bit higher |
+| 3 | 469 hours | 179 of Dalım's films have no runtime, and a few CSV runtimes are nonsense (Oppenheimer at 10,809 min). Anything over 400 min is skipped, so the real number is a bit higher |
 | 6 | 71 Alice Guy films | Based on the CSV's director field, filled from Letterboxd where it was empty |
 | 8 | Countries | 513 films have no country in the CSV; only count films that have one |
 | 13 | Twin | Mean absolute rating difference over films both people rated |
@@ -165,6 +165,6 @@ There's no Firebase work, and nothing changes for the existing games.
 
 ## Open questions
 
-- Do we show this to Dalim before the party, or is it a surprise? If it's a surprise, it shouldn't be in the top bar until the night: keep the route but hide the label.
+- Do we show this to Dalım before the party, or is it a surprise? If it's a surprise, it shouldn't be in the top bar until the night: keep the route but hide the label.
 - Add a closing slide with a message from each of us? It would be the most personal part, and it needs the four of us to write two lines each.
 - Is 15 slides too many? Slides 9 and 12 are the easiest to cut.

@@ -3,8 +3,8 @@
 const SHOWS = [
   {
     href: '#/dalim',
-    title: 'Dalim’in 2026’sı',
-    blurb: 'Dalim’in yılı 15 sahnede. Biri kaydırır, herkes izler.',
+    title: 'Dalım’ın 2026’sı',
+    blurb: 'Dalım’ın yılı 15 sahnede. Biri kaydırır, herkes izler.',
     how: 'Önce bu, 5 dakika',
   },
   {
@@ -34,7 +34,7 @@ const SIDE = 9
   <div class="hub">
     <header class="intro">
       <h1 class="tonight">Bu gece gösterimde</h1>
-      <p>Dalim’in doğum günü. Önce yılın özeti, sonra iki oyun.</p>
+      <p>Dalım’ın doğum günü. Önce yılın özeti, sonra iki oyun.</p>
     </header>
 
     <nav class="sign" aria-label="Bu gecenin programı">

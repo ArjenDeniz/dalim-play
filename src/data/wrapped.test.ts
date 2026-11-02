@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { WRAPPED, stars } from './wrapped'
 
-describe('Dalim’in 2026’sı numbers', () => {
+describe('Dalım’ın 2026’sı numbers', () => {
   it('the frame calendar covers 1 January to 1 November and lights the right number of days', () => {
     const { lit, totalDays, days } = WRAPPED.count
     expect(lit).toHaveLength(totalDays)

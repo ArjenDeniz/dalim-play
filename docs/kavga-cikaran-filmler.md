@@ -9,7 +9,7 @@ The films we disagree about most, as Film Kapışması rounds. The screen names 
 
 ## Why this one
 
-Points are nice, but the best moments at a game night are when the room argues. A 3.5-star gap is a ready-made argument: Arjen gave *Everything Everywhere All at Once* 1.5 stars and Dalim gave it 5 with a heart. Putting that on a TV and then handing Arjen the floor is the whole game.
+Points are nice, but the best moments at a game night are when the room argues. A 3.5-star gap is a ready-made argument: Arjen gave *Everything Everywhere All at Once* 1.5 stars and Dalım gave it 5 with a heart. Putting that on a TV and then handing Arjen the floor is the whole game.
 
 It's also the cheapest of the three proposals to build. It reuses the Film Kapışması question flow and the "who watched it" seat row from the emoji game, and the only new piece is a timer.
 
@@ -22,26 +22,26 @@ Films that at least two of us rated, sorted by the gap between the highest and l
 
 | Gap | Film | Ratings |
 |---|---|---|
-| 3.5 | *Everything Everywhere All at Once* (2022) | Arjen 1.5 · Dalim 5 |
-| 3.5 | *Concatenation* (2020) | Nil 5 · Dalim 1.5 |
-| 3 | *Radio, My Love* (2025) | Arjen 1.5 · İrem 3 · Dalim 3 · Nil 4.5 |
-| 3 | *Lux Æterna* (2019) | İrem 5 · Dalim 2 |
-| 3 | *Love, Death & Robots: Good Hunting* (2019) | Dalim 1 · Arjen 2.5 · Nil 4 |
-| 3 | *I’ve Come and I am Gone* (2011) | İrem 5 · Dalim 2 |
-| 2.5 | *Sirāt* (2025) | Arjen 2.5 · Dalim 5 |
-| 2.5 | *Moana* (2016) | Dalim 2.5 · Nil 3 · İrem 5 |
-| 2.5 | *Me and Earl and the Dying Girl* (2015) | Dalim 2.5 · Arjen 5 |
-| 2.5 | *The Second Act* (2024) | Dalim 2 · Arjen 4.5 |
-| 2 | *My Neighbor Totoro* (1988) | Dalim 3 · İrem 5 |
-| 2 | *Life of Pi* (2012) | Dalim 1.5 · Arjen 3.5 |
-| 2 | *Suspiria* (2018) | Arjen 2.5 · Dalim 4.5 |
-| 2 | *Despicable Me* (2010) | Dalim 1.5 · İrem 3.5 |
-| 2 | *Elemental* (2023) | Dalim 2.5 · Nil 4.5 |
-| 2 | *Crash* (2005) | Dalim 1.5 · Nil 3.5 |
-| 2 | *Flow* (2024) | Arjen 2 · Dalim 3 · İrem 4 |
-| 2 | *Black Box Diaries* (2024) | Arjen 3 · İrem 5 · Dalim 5 |
+| 3.5 | *Everything Everywhere All at Once* (2022) | Arjen 1.5 · Dalım 5 |
+| 3.5 | *Concatenation* (2020) | Nil 5 · Dalım 1.5 |
+| 3 | *Radio, My Love* (2025) | Arjen 1.5 · İrem 3 · Dalım 3 · Nil 4.5 |
+| 3 | *Lux Æterna* (2019) | İrem 5 · Dalım 2 |
+| 3 | *Love, Death & Robots: Good Hunting* (2019) | Dalım 1 · Arjen 2.5 · Nil 4 |
+| 3 | *I’ve Come and I am Gone* (2011) | İrem 5 · Dalım 2 |
+| 2.5 | *Sirāt* (2025) | Arjen 2.5 · Dalım 5 |
+| 2.5 | *Moana* (2016) | Dalım 2.5 · Nil 3 · İrem 5 |
+| 2.5 | *Me and Earl and the Dying Girl* (2015) | Dalım 2.5 · Arjen 5 |
+| 2.5 | *The Second Act* (2024) | Dalım 2 · Arjen 4.5 |
+| 2 | *My Neighbor Totoro* (1988) | Dalım 3 · İrem 5 |
+| 2 | *Life of Pi* (2012) | Dalım 1.5 · Arjen 3.5 |
+| 2 | *Suspiria* (2018) | Arjen 2.5 · Dalım 4.5 |
+| 2 | *Despicable Me* (2010) | Dalım 1.5 · İrem 3.5 |
+| 2 | *Elemental* (2023) | Dalım 2.5 · Nil 4.5 |
+| 2 | *Crash* (2005) | Dalım 1.5 · Nil 3.5 |
+| 2 | *Flow* (2024) | Arjen 2 · Dalım 3 · İrem 4 |
+| 2 | *Black Box Diaries* (2024) | Arjen 3 · İrem 5 · Dalım 5 |
 
-**Dalim is in every one of these fights.** That's partly because Dalim has rated the most films, so Dalim overlaps with everyone. It's a birthday, so lean into it: the round title can be "Dalim herkese karşı". The fights where Dalim is the generous one (*Everything Everywhere*, *Sirāt*, *Suspiria*, *Black Box Diaries*) balance the ones where Dalim is the harsh one (*Life of Pi*, *Despicable Me*, *Crash*, *Totoro*).
+**Dalım is in every one of these fights.** That's partly because Dalım has rated the most films, so Dalım overlaps with everyone. It's a birthday, so lean into it: the round title can be "Dalım herkese karşı". The fights where Dalım is the generous one (*Everything Everywhere*, *Sirāt*, *Suspiria*, *Black Box Diaries*) balance the ones where Dalım is the harsh one (*Life of Pi*, *Despicable Me*, *Crash*, *Totoro*).
 
 Pick recognisable films over obscure ones. The room needs to have an opinion on the film for the defence to land, so *Totoro*, *Life of Pi*, *Moana* and *Suspiria* beat *I’ve Come and I am Gone*. The Love, Death & Robots episodes are a fun three-way fight, since three of us rated them.
 
@@ -55,7 +55,7 @@ All of them keep the four phone options as they are now, so nothing changes for 
 > ***Life of Pi*** (2012)
 > Arjen 3,5 yıldız verdi. Biri 1,5 verdi. Kim?
 
-Options: İrem, Nil, Arjen, Dalim, in the usual order. The person whose rating is shown is one of the four, which is fine: picking them is simply wrong, and it gives the slow and confused a way to lose points.
+Options: İrem, Nil, Arjen, Dalım, in the usual order. The person whose rating is shown is one of the four, which is fine: picking them is simply wrong, and it gives the slow and confused a way to lose points.
 
 ### 2. "Kim bayıldı?" (Who loved it?)
 The mirror image: show the low rating, ask for the high one.
@@ -64,16 +64,16 @@ The mirror image: show the low rating, ask for the high one.
 
 ### 3. "Kaç yıldız?" (How many stars?)
 > ***Everything Everywhere All at Once***
-> Dalim 5 yıldız ve kalp verdi. Arjen kaç verdi?
+> Dalım 5 yıldız ve kalp verdi. Arjen kaç verdi?
 
 Options: four star values, the right one among them, spread out (for example 5, 4, 3, 1.5). Don't put neighbouring half-stars together (3 and 3.5); that's a coin toss, not a question.
 
 ### 4. "Üçlü kavga" (Three-way fight, used once)
 For a film three of us rated, show the film and the three names, and ask who gave the lowest:
 > ***Love, Death & Robots: Good Hunting***
-> Nil, Arjen ve Dalim puanladı. En düşük kim?
+> Nil, Arjen ve Dalım puanladı. En düşük kim?
 
-Answer: Dalim (1★).
+Answer: Dalım (1★).
 
 ## The defence (Savunma)
 

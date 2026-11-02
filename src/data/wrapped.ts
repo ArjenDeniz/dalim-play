@@ -1,11 +1,11 @@
-// Dalim'in 2026'sı (#/dalim). Hand-checked numbers, not computed in the browser: the raw CSV stays out of the repo.
-// Source: Dalim's films CSV (`last_logged` in 2026, up to 1 November) and İrem's diary, read on 2026-11-02.
+// Dalım'ın 2026'sı (#/dalim). Hand-checked numbers, not computed in the browser: the raw CSV stays out of the repo.
+// Source: Dalım's films CSV (`last_logged` in 2026, up to 1 November) and İrem's diary, read on 2026-11-02.
 // Plan and caveats per number: docs/dalim-wrapped.md.
 
 export interface WrappedFilm {
   title: string
   year: number
-  /** Dalim's stars, 0.5–5 */
+  /** Dalım's stars, 0.5–5 */
   rating?: number
 }
 
@@ -14,7 +14,7 @@ const DAYS_LIT =
   '11111111111111111010111111111011011110110111010111111111111101111111111111001111111111110010111011101111011011011111010000011001011011001111001010011010111110010011001101111011111111111111111111111111000011110110100110011110011101011100111111011001101110011111110101010001011111100100000111101010010001111'
 
 export const WRAPPED = {
-  title: { heading: 'Dalim’in 2026’sı', sub: 'Bir yılın filmleri, tek gecede.' },
+  title: { heading: 'Dalım’ın 2026’sı', sub: 'Bir yılın filmleri, tek gecede.' },
 
   count: {
     films: 524,
@@ -73,7 +73,7 @@ export const WRAPPED = {
   director: {
     name: 'Alice Guy-Blaché',
     films: 71,
-    sub: 'Sinemanın ilk kadın yönetmeni, Dalim’in bu yılki en yakın arkadaşı.',
+    sub: 'Sinemanın ilk kadın yönetmeni, Dalım’ın bu yılki en yakın arkadaşı.',
     others: [
       { name: 'Frances Arpaia', films: 10 },
       { name: 'David Lynch', films: 6 },
@@ -190,8 +190,8 @@ export const WRAPPED = {
 
   dayApart: {
     first: { name: 'İrem', date: '4 Şubat' },
-    second: { name: 'Dalim', date: '5 Şubat' },
-    // The same Alice Guy shorts: [İrem's stars, Dalim's stars]
+    second: { name: 'Dalım', date: '5 Şubat' },
+    // The same Alice Guy shorts: [İrem's stars, Dalım's stars]
     films: [
       { title: 'Danse Fleur de Lotus', year: 1897, stars: [4, 4] },
       { title: 'Bathing in a Stream', year: 1897, stars: [3.5, 3] },

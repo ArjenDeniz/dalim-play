@@ -26,7 +26,7 @@ const matched = computed(() => join.value >= 1)
 <template>
   <section v-scene="onProgress" class="scene tall twin" aria-labelledby="w-twin">
     <div class="pin" :style="{ '--j': join }">
-      <h2 id="w-twin" class="big">Dalim’in film ikizi: {{ best.name }}</h2>
+      <h2 id="w-twin" class="big">Dalım’ın film ikizi: {{ best.name }}</h2>
       <p class="say">
         Birlikte puanladıkları {{ best.films }} filmde ortalama sadece {{ best.diff }} yıldız fark.
       </p>
@@ -34,7 +34,7 @@ const matched = computed(() => join.value >= 1)
       <div class="tickets" :class="{ matched }" aria-hidden="true">
         <div class="half l" :style="{ clipPath: leftClip }">
           <span class="seat">Koltuk D</span>
-          <span class="who">Dalim</span>
+          <span class="who">Dalım</span>
         </div>
         <div class="half r" :style="{ clipPath: rightClip }">
           <span class="seat">Koltuk İ</span>

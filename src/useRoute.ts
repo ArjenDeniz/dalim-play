@@ -22,7 +22,7 @@ export const PAGES: Page[] = [
   { hash: '#/', view: HomeHub, width: 1180 },
   {
     hash: '#/dalim',
-    label: 'Dalim’in 2026’sı',
+    label: 'Dalım’ın 2026’sı',
     view: defineAsyncComponent(() => import('./views/DalimWrapped.vue')),
     width: 1180,
     bleed: true,

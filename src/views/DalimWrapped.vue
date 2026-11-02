@@ -16,7 +16,7 @@ import TitleScene from '../components/wrapped/TitleScene.vue'
 import TwinScene from '../components/wrapped/TwinScene.vue'
 import WeekScene from '../components/wrapped/WeekScene.vue'
 
-// Dalim'in 2026'sı: Dalim's year in film as one long reel you scroll through on the TV.
+// Dalım'ın 2026'sı: Dalım's year in film as one long reel you scroll through on the TV.
 // Each scene is a <section class="scene">; tall ones pin their content and play it out as you scroll (see scroll.ts).
 // → / ← jump a whole scene, so whoever holds the laptop can drive it like slides.
 const SCENES = [

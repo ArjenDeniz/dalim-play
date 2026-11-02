@@ -1,7 +1,7 @@
 import type { Seen } from './people'
 
 // Who logged each pack film on Letterboxd, from the exports of 2026-11-02.
-// favorite: in their four profile favourites (Dalim: 5 stars and a heart).
+// favorite: in their four profile favourites (Dalım: 5 stars and a heart).
 export const SEEN: Record<string, Seen> = {
   'howl-s-moving-castle-2004': { irem: { rating: 5 }, nil: { rating: 4 }, arjen: { liked: true }, dalim: { rating: 4 } },
   'up-2009': { irem: { rating: 3.5 }, nil: { rating: 4 }, arjen: {}, dalim: { rating: 3.5 } },

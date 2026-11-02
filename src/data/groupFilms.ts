@@ -1,7 +1,7 @@
 import type { Film } from './types'
 import { f } from './filmHelpers'
 
-// Films the group logged on Letterboxd (watched by two or more of us, or a 2024+ feature Dalim saw),
+// Films the group logged on Letterboxd (watched by two or more of us, or a 2024+ feature Dalım saw),
 // generated once on 2026-11-02 from the Letterboxd exports so guesses can find them.
 // Genres come from Letterboxd or Wikidata and may be rough. Edit by hand from here on.
 export const GROUP_FILMS: Film[] = [

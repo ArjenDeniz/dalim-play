@@ -3,7 +3,7 @@ export const PEOPLE = [
   { id: 'irem', name: 'İrem' },
   { id: 'nil', name: 'Nil' },
   { id: 'arjen', name: 'Arjen' },
-  { id: 'dalim', name: 'Dalim' },
+  { id: 'dalim', name: 'Dalım' },
 ] as const
 
 export type PersonId = (typeof PEOPLE)[number]['id']
@@ -14,7 +14,7 @@ export interface SeenBy {
   liked?: true
   /** Logged in 2026 */
   thisYear?: true
-  /** In their profile's four favourites (Dalim: 5 stars and a heart) */
+  /** In their profile's four favourites (Dalım: 5 stars and a heart) */
   favorite?: true
 }
 

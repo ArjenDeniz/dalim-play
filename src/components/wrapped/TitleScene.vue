@@ -3,7 +3,7 @@ import { WRAPPED } from '../../data/wrapped'
 import { vScene } from './scroll'
 
 // The one loud moment: the marquee lights up letter by letter, then the whole sign zooms past as you scroll.
-const lines = ['Dalim’in', '2026’sı']
+const lines = ['Dalım’ın', '2026’sı']
 let n = 0
 const letters = lines.map((line) => [...line].map((ch) => ({ ch, i: n++ })))
 const BULBS = 22

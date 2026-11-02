@@ -34,8 +34,8 @@ It also fixes the main limit of Film Kapışması: every question there is writt
 |---|---|---|
 | Date (day and month) | Yes | Rhythm is a clue: six films in one day, or one a week |
 | Title and year | Yes | The main clue |
-| Stars | Yes | İrem's 5s versus Dalim's 3s on the same films is the best clue in the game |
-| ↻ rewatch | Yes | Dalim rewatches far more than anyone |
+| Stars | Yes | İrem's 5s versus Dalım's 3s on the same films is the best clue in the game |
+| ↻ rewatch | Yes | Dalım rewatches far more than anyone |
 | ♥ like | Yes | Cheap and useful |
 | Tags | Only on the last line, as a hint | Arjen's tags (`berlin`, `munich`, `suy`) give the answer away at once |
 | Review text | Never | Private-ish and long |
@@ -48,19 +48,19 @@ The person whose diary it is knows it's theirs. Three ways to handle that:
 2. **Hide-and-seek bonus.** The owner can't answer, but gets 150 points for every player who guesses wrong. That turns weird diaries into a strategy. It's more fun, but it rewards having a strange diary rather than knowing your friends.
 3. **Ignore it.** Everyone answers; the owner gets an easy 1000. Fine as a joke for one round, unfair over ten.
 
-Options 1 and 2 need to know which phone belongs to which of the four. The simplest way: in the lobby, the host taps a player and picks "İrem / Nil / Arjen / Dalim / kimse (Su)". That mapping is stored on the host only, since scoring happens there. Phones and Firestore don't change.
+Options 1 and 2 need to know which phone belongs to which of the four. The simplest way: in the lobby, the host taps a player and picks "İrem / Nil / Arjen / Dalım / kimse (Su)". That mapping is stored on the host only, since scoring happens there. Phones and Firestore don't change.
 
 ## Choosing the diary pages
 
-A **page** is 4 to 6 entries from one person, logged within at most 10 days of each other. It's taken from `diary.csv` for İrem, Nil and Arjen. Dalim's CSV only has a first and last log date per film, so Dalim's pages come from `last_logged` and are missing rewatches between those dates.
+A **page** is 4 to 6 entries from one person, logged within at most 10 days of each other. It's taken from `diary.csv` for İrem, Nil and Arjen. Dalım's CSV only has a first and last log date per film, so Dalım's pages come from `last_logged` and are missing rewatches between those dates.
 
 ### Rules for a good page
 
 - **A signature, not a riddle.** At least one entry should be something only that person would log (a film nobody else in the group has seen, or a pattern like stand-up specials). Pages full of films all four have seen are unguessable; drop them.
 - **No one-word giveaways.** If a page has a film that is famously one person's (a profile favourite), only allow it as the last line.
 - **Mixed eras and ratings.** A page of five unrated films carries half the clues. Prefer pages with at least three ratings.
-- **Balance.** In a set of 12: three pages per person. Without this rule Dalim would be the answer half the time, simply because Dalim logs the most, and everyone would learn to press Dalim.
-- **One trap.** Include one pair of pages that look alike. The best one we have: İrem on 4 February and Dalim on 5 February logged the same Alice Guy-Blaché shorts a day apart. İrem gave them 4–5 stars, Dalim mostly 2.5–3.5. Run the two pages a few rounds apart. The second time, the room should read the stars.
+- **Balance.** In a set of 12: three pages per person. Without this rule Dalım would be the answer half the time, simply because Dalım logs the most, and everyone would learn to press Dalım.
+- **One trap.** Include one pair of pages that look alike. The best one we have: İrem on 4 February and Dalım on 5 February logged the same Alice Guy-Blaché shorts a day apart. İrem gave them 4–5 stars, Dalım mostly 2.5–3.5. Run the two pages a few rounds apart. The second time, the room should read the stars.
 
 ### Candidate pages from the exports
 
@@ -79,13 +79,13 @@ Picked by hand from the data on 2026-11-02; each still needs a final check again
 **Arjen**
 - **10 Jan–3 Feb 2026, stand-up month:** four Ricky Gervais specials, two Trevor Noah, Deniz Göktaş. Too long for the 10-day rule; take the first five.
 - **15–18 Aug 2026, Don Hertzfeldt:** *Billy's Balloon*, *Wisdom Teeth*, *Rejected*, *The Meaning of Life*, *Lily and Jim*, all unrated. The no-stars pattern is itself a clue.
-- **4–6 Jun 2026, festival:** *The Lady from Constantinople* 1.5★, *How Good to See You Alive* 5★, plus 2026 festival shorts. Dalim logged the same festival films too, so check Dalim's dates: if they match, this is a second trap.
+- **4–6 Jun 2026, festival:** *The Lady from Constantinople* 1.5★, *How Good to See You Alive* 5★, plus 2026 festival shorts. Dalım logged the same festival films too, so check Dalım's dates: if they match, this is a second trap.
 
-**Dalim**
+**Dalım**
 - **5 Feb 2026:** the other half of the Alice Guy trap
 - **26 Jul 2026, the 133-year day:** *Blacksmith Scene* (1893) to *Heartstopper* (2026), with *Kes* 5★ in the middle
 - **17 Jan 2026:** *Female Trouble* 4.5★ followed by eleven Alice Guy shorts
-- **15 Sep 2026, flower day:** 18 films about flowers. Dalim Wrapped already shows this, so only use it if Wrapped isn't on the same night, or use it on purpose as a reward for people who paid attention.
+- **15 Sep 2026, flower day:** 18 films about flowers. Dalım Wrapped already shows this, so only use it if Wrapped isn't on the same night, or use it on purpose as a reward for people who paid attention.
 
 ## Data
 
@@ -123,7 +123,7 @@ The script should print each candidate's score so we pick quickly: number of ent
 
 The room model doesn't change: phones still only get four option labels, and the right answer still stays on the host until the reveal. Specifically:
 
-- `QuizQuestion` gets an optional `diary?: DiaryPage`. When it's set, the options are the four names in the fixed order (İrem, Nil, Arjen, Dalim) and `answer` is the owner's index.
+- `QuizQuestion` gets an optional `diary?: DiaryPage`. When it's set, the options are the four names in the fixed order (İrem, Nil, Arjen, Dalım) and `answer` is the owner's index.
 - The host stage renders a `DiaryCard` instead of the question text. It reveals one line every `limitMs / (lines + 1)`, timed from `openedAt` like the countdown, so it stays in sync with scoring.
 - The question list becomes a mix: the hand-written questions plus diary rounds drawn from `DIARY_PAGES`, following the balance rule. Shuffle with a seed stored in the host's saved state, so a reload doesn't reshuffle mid-game.
 - Owner handling (option 1 or 2 above) goes into `src/quiz/scoring.ts` as a per-question set of players who are skipped, with tests next to the existing ones.
@@ -135,7 +135,7 @@ The room model doesn't change: phones still only get four option labels, and the
 
 - **The diary card is the star.** A ruled, slightly warm card (`--screen` on velvet), like a cinema ledger. Each line appears with a typewriter-fast fill, not a fade.
 - **Stars in bulb gold**, rewatch and heart in their Letterboxd shapes but in our colours.
-- **The reveal stamp:** the owner's name in `Limelight`, rotated a few degrees, in their option colour (İrem blood, Nil purple, Arjen gold, Dalim TV-cyan), so the colour on the phone and the stamp match.
+- **The reveal stamp:** the owner's name in `Limelight`, rotated a few degrees, in their option colour (İrem blood, Nil purple, Arjen gold, Dalım TV-cyan), so the colour on the phone and the stamp match.
 - **Reading distance:** titles at least 2.4vw on the TV; long titles wrap rather than truncate.
 - **Reduced motion:** lines appear without the typing effect, on the same schedule.
 
