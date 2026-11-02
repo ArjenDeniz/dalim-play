@@ -6,7 +6,7 @@ export const PACKS: Pack[] = [
   {
     id: 'hepimiz',
     title: 'Hepimizin izlediği',
-    blurb: 'Dördümüzün ya da en az üçümüzün Letterboxd’unda olan filmler.',
+    blurb: 'Neredeyse hepimizin izlediği filmler.',
     puzzles: [
       { filmId: 'howl-s-moving-castle-2004', emojis: ['👒', '💔', '👵', '🔥', '🐦‍⬛', '🧙‍♂️', '🦿', '🏰'] },
       { filmId: 'parasite-2019', emojis: ['📶', '🍕', '🪨', '🍑', '🏠', '🌧️', '🍜', '🔪'] },
@@ -27,7 +27,7 @@ export const PACKS: Pack[] = [
   {
     id: 'favoriler',
     title: 'Favorilerimiz',
-    blurb: 'Profil favorilerimiz ve Dalım’ın 5 yıldız artı kalp verdikleri. Film bilinince sıra “kimin favorisi?” sorusunda.',
+    blurb: 'Her biri birimizin favorisi. Filmi bulunca bir soru daha: kimin?',
     whoseFavorite: true,
     puzzles: [
       { filmId: 'mary-and-max-2009', emojis: ['🇦🇺', '🗽', '✉️', '🍫', '🐟', '👧', '👨‍🦲', '🫂'] },
@@ -49,7 +49,7 @@ export const PACKS: Pack[] = [
   {
     id: 'bu-yil',
     title: '2026’da izlediklerimiz',
-    blurb: 'Bu yıl Letterboxd’a düştüğümüz filmler. Çoğu yepyeni, birkaçı bayağı eski.',
+    blurb: 'Bu yıl izlediklerimiz. Çoğu yepyeni, birkaçı bayağı eski.',
     puzzles: [
       { filmId: 'project-hail-mary-2026', emojis: ['😴', '🧪', '👨‍🏫', '☀️', '🪨', '🕷️', '🚀', '🤝'] },
       { filmId: 'the-cabbage-patch-fairy-1896', emojis: ['🎞️', '🇫🇷', '👩', '🌿', '👶', '🧚‍♀️', '🥬'] },

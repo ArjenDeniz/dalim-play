@@ -50,8 +50,7 @@ watchEffect(async () => {
         <button class="link" @click="$emit('newRoom')">Yeni oda numarası al</button>
       </div>
       <p class="rules">
-        {{ questions }} soru. Doğru cevap 1000 puandan başlar, süre bittikçe 500’e iner. Üst üste bilene +100, en
-        fazla +300 seri bonusu. İlk dokunuş kilitlenir.
+        {{ questions }} soru. Hızlı bilen çok puan alır, üst üste bilen bonus kazanır. İlk dokunuş kilitlenir.
       </p>
     </div>
   </section>

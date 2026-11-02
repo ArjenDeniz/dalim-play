@@ -25,7 +25,7 @@ function stars(r?: number) {
           <span v-if="seen[p.id]!.rating" class="stars" :aria-label="`${seen[p.id]!.rating} yıldız`">
             {{ stars(seen[p.id]!.rating) }}
           </span>
-          <span v-else class="note">{{ p.letterboxd ? 'puansız' : 'Arjen’le' }}</span>
+          <span v-else class="note">{{ p.letterboxd ? 'puansız' : 'izlemiş' }}</span>
           <span class="tags">
             <span v-if="seen[p.id]!.liked" class="heart" aria-label="kalp">♥</span>
             <span v-if="seen[p.id]!.thisYear" class="year">bu yıl</span>

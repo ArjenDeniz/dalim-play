@@ -25,8 +25,7 @@ const RULES = [
   'Birinin Letterboxd günlüğünden bir sayfa, isimsiz.',
   `Satırlar ${LINE_MS / 1000} saniyede bir açılır. Kimin, telefondan seç.`,
   `Seçtiğin silinmez. İlk satırda bilen ${linePoints(1)} puan, son satırda ${linePoints(LINES)}.`,
-  `Günlük seninse sen de seç, belli etme. Yanılan her arkadaş +${FOOLED_POINTS}.`,
-  'Su’nun günlüğü yok, Su hep tahmin eder.',
+  `Günlük seninse sen de seç, belli etme. Kandırdığın her kişi +${FOOLED_POINTS}.`,
 ]
 
 const lines = computed(() =>
