@@ -1,0 +1,118 @@
+:root {
+  --velvet: #14091b;
+  --blood: #c1121f;
+  --bulb: #f2c14e;
+  --screen: #fff4d6;
+  --purple: #9d4edd;
+  --mauve: #6d597a;
+  --mauve-text: #b3a0bf; /* mauve lifted for AA contrast on velvet */
+
+  --display: 'Limelight', serif;
+  --body: 'Bricolage Grotesque', system-ui, sans-serif;
+
+  color-scheme: dark;
+  font-family: var(--body);
+  font-optical-sizing: auto;
+  line-height: 1.45;
+  color: var(--screen);
+  /* on the root only, so the seats layer below can sit on top of it */
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgb(157 78 221 / 0.22), transparent 70%) no-repeat,
+    var(--velvet);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+/* red seats rising from the bottom of the room */
+body::after {
+  content: '';
+  position: fixed;
+  inset: auto 0 0;
+  height: 36vh;
+  z-index: -1;
+  background: url('/img/seats.jpg') center 30% / cover;
+  opacity: 0.4;
+  mask: linear-gradient(to bottom, transparent, #000 75%);
+  pointer-events: none;
+}
+
+#app {
+  position: relative;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border: 0;
+  color: inherit;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid var(--purple);
+  outline-offset: 3px;
+}
+
+.primary {
+  padding: 14px 26px;
+  border-radius: 999px;
+  background: var(--bulb);
+  color: var(--velvet);
+  font-weight: 700;
+  font-size: 1.1rem;
+  box-shadow: 0 0 22px rgb(242 193 78 / 0.4);
+}
+
+.primary:hover {
+  background: #ffd36b;
+}
+
+.ghost {
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: transparent;
+  border: 1.5px solid rgb(255 244 214 / 0.25);
+  color: var(--screen);
+}
+
+.ghost:hover {
+  border-color: var(--screen);
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgb(255 244 214 / 0.06);
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.icon:hover {
+  background: rgb(255 244 214 / 0.14);
+}
+
+.link {
+  padding: 0;
+  background: none;
+  color: var(--mauve-text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.link:hover {
+  color: var(--screen);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
