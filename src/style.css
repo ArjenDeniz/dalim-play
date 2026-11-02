@@ -126,3 +126,26 @@ a:focus-visible {
   clip-path: inset(50%);
   white-space: nowrap;
 }
+
+/* a button that presses itself: the line along the bottom runs out over --auto-ms */
+.auto {
+  position: relative;
+  overflow: hidden;
+}
+
+.auto::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 4px;
+  width: 100%;
+  background: rgb(20 9 27 / 0.45);
+  transform-origin: left;
+  animation: auto-run var(--auto-ms, 5000ms) linear both;
+}
+
+@keyframes auto-run {
+  from { transform: scaleX(1); }
+  to { transform: scaleX(0); }
+}

@@ -11,6 +11,8 @@ const props = defineProps<{
   gained: Record<string, number>
   done: number
   total: number
+  /** Moves on by itself after this long */
+  autoMs: number
 }>()
 defineEmits<{ next: [] }>()
 
@@ -51,7 +53,9 @@ const scoreOf = (id: string) => (settled.value ? props.after : props.before).fin
       </li>
     </TransitionGroup>
 
-    <button ref="nextBtn" class="primary" @click="$emit('next')">Sıradaki soru</button>
+    <button ref="nextBtn" class="primary auto" :style="{ '--auto-ms': `${autoMs}ms` }" @click="$emit('next')">
+      Sıradaki soru
+    </button>
   </section>
 </template>
 

@@ -27,6 +27,9 @@ const DEFAULT_SECONDS = 20
 const ALL_IN_MS = 600
 /** Answers sent right at the buzzer may still be on their way */
 const GRACE_MS = 500
+/** The show runs itself: how long the reveal and the scoreboard stay up before moving on */
+export const REVEAL_MS = 5000
+export const BOARD_MS = 6000
 
 export type { Phase }
 
@@ -229,6 +232,13 @@ export function useQuiz() {
     state.results.push({ questionId: question.value.id, limitMs: limitMs.value, answers })
     state.phase = 'reveal'
     write({ phase: 'reveal', reveal: buildReveal() })
+    autoAdvance()
+  }
+
+  /** Reveal and scoreboard move on by themselves; Enter or the button just gets there sooner */
+  function autoAdvance() {
+    if (state.phase === 'reveal') schedule(REVEAL_MS, next)
+    else if (state.phase === 'intermission') schedule(BOARD_MS, next)
   }
 
   function buildReveal(): Reveal {
@@ -258,8 +268,10 @@ export function useQuiz() {
 
   function next() {
     if (state.phase === 'reveal') {
+      clearTimeout(timer)
       state.phase = state.index === QUIZ.length - 1 ? 'credits' : 'intermission'
       write({ phase: state.phase })
+      autoAdvance()
     } else if (state.phase === 'intermission') {
       state.index++
       beginQuestion()
@@ -294,6 +306,8 @@ export function useQuiz() {
       if (state.phase === 'reading' || state.phase === 'answering') {
         state.results = state.results.slice(0, state.index)
         beginQuestion()
+      } else {
+        autoAdvance()
       }
     } catch (e) {
       console.error(e)

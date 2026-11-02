@@ -6,7 +6,7 @@ import EndCredits from '../components/quiz/EndCredits.vue'
 import HostLobby from '../components/quiz/HostLobby.vue'
 import PlayerRail from '../components/quiz/PlayerRail.vue'
 import QuizIntermission from '../components/quiz/QuizIntermission.vue'
-import { useQuiz } from '../quiz/useQuiz'
+import { BOARD_MS, REVEAL_MS, useQuiz } from '../quiz/useQuiz'
 
 // The host screen (TV or laptop). Players answer on their phones from #/katil.
 const quiz = useQuiz()
@@ -104,7 +104,14 @@ watch(
         <span v-else-if="state.phase === 'answering'">
           {{ Object.keys(locked).length }} / {{ players.length }} kişi kilitledi
         </span>
-        <button v-else ref="nextBtn" class="primary" @click="quiz.next">
+        <button
+          v-else
+          ref="nextBtn"
+          :key="`next-${state.index}`"
+          class="primary auto"
+          :style="{ '--auto-ms': `${REVEAL_MS}ms` }"
+          @click="quiz.next"
+        >
           {{ state.index === quiz.total - 1 ? 'Jeneriğe geç' : 'Puan durumu' }}
         </button>
       </div>
@@ -128,6 +135,7 @@ watch(
       :gained="gained"
       :done="state.index + 1"
       :total="quiz.total"
+      :auto-ms="BOARD_MS"
       @next="quiz.next"
     />
 
