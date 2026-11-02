@@ -25,7 +25,7 @@ function stars(r?: number) {
           <span v-if="seen[p.id]!.rating" class="stars" :aria-label="`${seen[p.id]!.rating} yıldız`">
             {{ stars(seen[p.id]!.rating) }}
           </span>
-          <span v-else class="note">puansız</span>
+          <span v-else class="note">{{ p.letterboxd ? 'puansız' : 'Arjen’le' }}</span>
           <span class="tags">
             <span v-if="seen[p.id]!.liked" class="heart" aria-label="kalp">♥</span>
             <span v-if="seen[p.id]!.thisYear" class="year">bu yıl</span>
@@ -54,7 +54,7 @@ function stars(r?: number) {
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 8px;
 }
 
@@ -132,6 +132,6 @@ function stars(r?: number) {
 }
 
 @media (max-width: 480px) {
-  .seats { grid-template-columns: repeat(2, 1fr); }
+  .seats { grid-template-columns: repeat(3, 1fr); }
 }
 </style>

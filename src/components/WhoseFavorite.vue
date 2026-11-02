@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
-import { PEOPLE, type PersonId, type Seen } from '../data/people'
+import { WITH_LETTERBOXD, type PersonId, type Seen } from '../data/people'
 
 const props = defineProps<{ seen: Seen; picked?: PersonId }>()
 defineEmits<{ pick: [id: PersonId] }>()
 
-const owners = computed(() => PEOPLE.filter((p) => props.seen[p.id]?.favorite))
+const owners = computed(() => WITH_LETTERBOXD.filter((p) => props.seen[p.id]?.favorite))
 const right = computed(() => !!props.picked && !!props.seen[props.picked]?.favorite)
 
 const first = ref<HTMLButtonElement[]>()
@@ -19,7 +19,7 @@ onMounted(() => {
     <p class="ask">Kimin favorisi?</p>
     <div class="names">
       <button
-        v-for="(p, i) in PEOPLE"
+        v-for="(p, i) in WITH_LETTERBOXD"
         :key="p.id"
         ref="first"
         class="name"

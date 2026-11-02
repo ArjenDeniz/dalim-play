@@ -93,6 +93,21 @@ export const QUIZ: QuizQuestion[] = [
     options: ['46', '97', '182', '263'],
     answer: 2, // the "suy" tag
   },
+  // The su-* questions below are all from Arjen's diary entries tagged "suy".
+  {
+    id: 'su-first',
+    question: 'Letterboxd’a göre Arjen’le Su’nun birlikte izlediği ilk film hangisi? Mayıs 2019, sinemada.',
+    emoji: '🎟️🍿',
+    options: ['Parasite', 'High Life', 'Stalker', 'Portrait of a Lady on Fire'],
+    answer: 1, // 16 May 2019 at Büyülü Fener; Stalker in June, Parasite in November, Portrait in December
+  },
+  {
+    id: 'su-cinema',
+    question: 'Arjen’le Su birlikte 182 film izledi. Kaçını sinemada izlediler?',
+    emoji: '🎥💺',
+    options: ['47', '82', '114', '151'],
+    answer: 2, // tagged "cinema"
+  },
   {
     id: 'watchlist',
     question: 'İzleme listesinde 882 film bekleten kim?',
