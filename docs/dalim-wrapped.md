@@ -5,7 +5,7 @@ A year-in-film reel for Dalim's birthday: about fifteen full-screen slides on th
 - **Route:** `#/dalim` (with a link in the top bar: "Dalim’in 2026’sı")
 - **Players:** nobody answers anything. One person moves the slides on and everyone watches.
 - **Length:** 4–6 minutes, depending on how much the room talks
-- **Status:** proposal
+- **Status:** built (2026-11-02) as one long scroll reel instead of click-through slides: each slide is a full-screen scene that plays out as you scroll, and → / ← jump a whole scene. Hub at `#/`.
 
 ## Why this one
 

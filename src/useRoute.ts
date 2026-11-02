@@ -1,5 +1,5 @@
 import { computed, defineAsyncComponent, ref, type Component } from 'vue'
-import EmojiGame from './views/EmojiGame.vue'
+import HomeHub from './views/HomeHub.vue'
 
 interface Page {
   /** `#/name`; anything after a further slash is passed to the view as `param` */
@@ -11,17 +11,33 @@ interface Page {
   width: number
   /** Phone pages drop the top bar and footer */
   bare?: boolean
+  /** Full-bleed pages run edge to edge; only the top bar and footer keep the width */
+  bleed?: boolean
 }
 
 // Every page is a component in src/views/. Add one here and, with a label, it gets a link in the top bar.
 // A hash is enough for a handful of pages: no router dependency and no Vercel rewrites.
+// The first page is the hub, and also where unknown hashes land.
 export const PAGES: Page[] = [
-  { hash: '#/', label: 'Emoji’den Filmi Bil', view: EmojiGame, width: 820 },
+  { hash: '#/', view: HomeHub, width: 1180 },
+  {
+    hash: '#/dalim',
+    label: 'Dalim’in 2026’sı',
+    view: defineAsyncComponent(() => import('./views/DalimWrapped.vue')),
+    width: 1180,
+    bleed: true,
+  },
   {
     hash: '#/kapisma',
     label: 'Film Kapışması',
     view: defineAsyncComponent(() => import('./views/QuizGame.vue')),
     width: 1180,
+  },
+  {
+    hash: '#/emoji',
+    label: 'Emoji’den Filmi Bil',
+    view: defineAsyncComponent(() => import('./views/EmojiGame.vue')),
+    width: 820,
   },
   {
     hash: '#/katil',

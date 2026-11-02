@@ -9,6 +9,7 @@ Pushing to `master` deploys production to https://dalim-play.vercel.app (Vercel 
 - Content comes from the players' Letterboxd exports (İrem, Nil, Arjen, Dalim; Su plays but has no export), read on 2026-11-02. The raw exports stay out of the repo; only what the games need is copied in.
 - Emoji rounds are grouped into packs in `src/data/puzzles.ts` (`PACKS`). Order each puzzle's emojis vaguest → most obvious: one opens per wrong guess, and the emoji count is also the guess limit. A film appears in one pack only. `whoseFavorite` packs ask "Kimin favorisi?" after each film.
 - `src/data/groupSeen.ts` says who logged each pack film (stars, heart, this year, favourite); the round end shows it. `src/data/people.ts` lists the four.
+- Dalim’in 2026’sı (`#/dalim`) is a scroll-through reel of Dalim's year. Its numbers are hand-checked in `src/data/wrapped.ts` (with tests in `wrapped.test.ts`), one scene component per slide in `src/components/wrapped/`.
 - Film Kapışması (`#/kapisma`) questions live in `src/data/quiz.ts`: four options, `answer` is the right one's index (0–3), optional `seconds` (default 20). "Kim…?" questions keep the names in the same order.
 - `src/data/films.ts` is a hand-written stand-in for TMDB, so years and genres may be off; `src/data/groupFilms.ts` adds films from our Letterboxd logs (generated once, edit by hand). Genre keys map to TMDB genre ids for the planned TMDB swap. Film ids are `slug(title)-year`; the tests fail if a puzzle points at a missing film.
 
@@ -18,10 +19,10 @@ Pushing to `master` deploys production to https://dalim-play.vercel.app (Vercel 
 - Fairness lives in `firebase/firestore.rules`: one answer per player per round, only while the options are lit, timed on the server clock. After changing the rules run `npm run deploy:firebase` then `npm run check:rules` (probes the live rules with throwaway users and a test room).
 
 ## Plans
-Proposals for the next games are in `docs/`: Dalim Wrapped (`dalim-wrapped.md`), Kimin günlüğü (`kimin-gunlugu.md`) and Kavga çıkaran filmler (`kavga-cikaran-filmler.md`).
+Proposals are in `docs/`: Dalim Wrapped (`dalim-wrapped.md`, built as a scroll reel), Kimin günlüğü (`kimin-gunlugu.md`) and Kavga çıkaran filmler (`kavga-cikaran-filmler.md`).
 
 ## Pages
-Each page is a component in `src/views/`, registered in `PAGES` in `src/useRoute.ts` (hash routes, which also adds the top-bar link). Shared pieces go in `src/components/`, page-specific ones in a subfolder (for example `src/components/quiz/`).
+Each page is a component in `src/views/`, registered in `PAGES` in `src/useRoute.ts` (hash routes, which also adds the top-bar link). `#/` is the hub (`HomeHub.vue`) listing tonight's shows in play order; Emoji’den Filmi Bil lives at `#/emoji`. Wrapped scenes pin with `position: sticky` and read their scroll progress from the `v-scene` and `v-reveal` directives in `src/components/wrapped/scroll.ts`. Shared pieces go in `src/components/`, page-specific ones in a subfolder (for example `src/components/quiz/`).
 
 ## Design
 - UI copy is Turkish, casual and gender-neutral.

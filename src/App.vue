@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, ref, watchEffect } from 'vue'
 import CreditsDialog from './components/CreditsDialog.vue'
 import { PAGES, useRoute } from './useRoute'
 
@@ -7,12 +7,13 @@ const route = useRoute()
 const page = computed(() => route.value.page)
 const nav = PAGES.filter((p) => p.label)
 const credits = ref<InstanceType<typeof CreditsDialog>>()
+watchEffect(() => (document.title = page.value.label ?? 'Bu gece gösterimde'))
 </script>
 
 <template>
-  <div class="page" :class="{ bare: page.bare }" :style="{ '--page-w': `${page.width}px` }">
+  <div class="page" :class="{ bare: page.bare, bleed: page.bleed }" :style="{ '--page-w': `${page.width}px` }">
     <nav v-if="!page.bare" class="marquee" aria-label="Oyunlar">
-      <span class="tonight">Bu gece gösterimde</span>
+      <a href="#/" class="tonight" :aria-current="page === PAGES[0] ? 'page' : undefined">Bu gece gösterimde</a>
       <a
         v-for="p in nav"
         :key="p.hash"
@@ -43,6 +44,22 @@ const credits = ref<InstanceType<typeof CreditsDialog>>()
   padding: 16px 0 24px;
 }
 
+/* full-bleed pages: the content runs edge to edge, the bar and footer stay clear of the reel's film rail */
+.page.bleed {
+  width: 100%;
+  padding-bottom: 0;
+}
+
+.page.bleed > .marquee,
+.page.bleed > .foot {
+  width: min(1180px, 100% - 32px - 2 * 34px);
+  margin-inline: auto;
+}
+
+.page.bleed > .foot {
+  padding-bottom: 48px;
+}
+
 .marquee {
   display: flex;
   align-items: baseline;
@@ -56,6 +73,12 @@ const credits = ref<InstanceType<typeof CreditsDialog>>()
 .tonight {
   color: var(--mauve-text);
   font-size: 0.95rem;
+  text-decoration: none;
+}
+
+.tonight:hover,
+.tonight[aria-current='page'] {
+  color: var(--screen);
 }
 
 .show {
