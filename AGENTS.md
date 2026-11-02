@@ -17,6 +17,9 @@ Pushing to `master` deploys production to https://dalim-play.vercel.app (Vercel 
 - Data model is in `src/quiz/room.ts`: `rooms/{pin}` written only by the host screen, `players/{uid}` and `answers/{round}_{uid}` written by phones.
 - Fairness lives in `firebase/firestore.rules`: one answer per player per round, only while the options are lit, timed on the server clock. After changing the rules run `npm run deploy:firebase` then `npm run check:rules` (probes the live rules with throwaway users and a test room).
 
+## Plans
+Proposals for the next games are in `docs/`: Dalim Wrapped (`dalim-wrapped.md`), Kimin günlüğü (`kimin-gunlugu.md`) and Kavga çıkaran filmler (`kavga-cikaran-filmler.md`).
+
 ## Pages
 Each page is a component in `src/views/`, registered in `PAGES` in `src/useRoute.ts` (hash routes, which also adds the top-bar link). Shared pieces go in `src/components/`, page-specific ones in a subfolder (for example `src/components/quiz/`).
 
